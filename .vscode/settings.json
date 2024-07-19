@@ -1,6 +1,6 @@
 {
     "files.exclude": {
-        "*.import": true,
+        "*/*.import": true,
         "*.sln": true,
         ".godot": true,
         ".vscode": true
