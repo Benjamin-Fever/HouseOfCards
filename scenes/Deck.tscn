@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://n434b38v67xs"]
+[gd_scene load_steps=4 format=3 uid="uid://n434b38v67xs"]
+
+[ext_resource type="Script" path="res://scenes/Deck.cs" id="1_jsswo"]
+[ext_resource type="Texture2D" uid="uid://chdr3pbfq5ur7" path="res://images/SBS - 2D Poker Pack/Top-Down/Cards/Card_DeckA-88x140.png" id="2_v5dwf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pseg0"]
+atlas = ExtResource("2_v5dwf")
+region = Rect2(88, 0, 88, 140)
 
 [node name="Deck" type="Node2D"]
+script = ExtResource("1_jsswo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_pseg0")
