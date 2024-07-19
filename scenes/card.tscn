@@ -11,4 +11,5 @@ region = Rect2(0, 0, 88, 124)
 script = ExtResource("1_f3ft6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = SubResource("AtlasTexture_hgnu3")

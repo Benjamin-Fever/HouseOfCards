@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0185f62y0d16"]
+
+[ext_resource type="PackedScene" uid="uid://d2w0nc71jm3a2" path="res://scenes/table.tscn" id="1_q5qhk"]
+[ext_resource type="PackedScene" path="res://scenes/Deck.tscn" id="2_ve48p"]
+
+[node name="Main" type="Node"]
+
+[node name="Table" parent="." instance=ExtResource("1_q5qhk")]
+
+[node name="Deck" parent="." instance=ExtResource("2_ve48p")]
+position = Vector2(423, -13)
+
+[node name="Camera2D" type="Camera2D" parent="."]
