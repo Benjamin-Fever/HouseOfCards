@@ -13,9 +13,11 @@ public partial class Deck : Node2D
 	{
 		for(int i = 0; i < deckSize; i++){
 			if(jokerCount > 0){
-				
+					
 			}
+			else if(pictureCardCount > 0){
 
+			}
 		}
 
 	}
@@ -27,9 +29,8 @@ public partial class Deck : Node2D
 
 }
 
-struct cardData {
+public struct cardData {
 	public enum suit { Spades, Hearts, Diamonds, Clubs };
 	public int value;
 	public suit cardSuit;
-
 }
