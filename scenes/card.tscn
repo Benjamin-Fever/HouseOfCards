@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cq2bn4nr0ydr"]
+[gd_scene load_steps=4 format=3 uid="uid://cq2bn4nr0ydr"]
 
-[ext_resource type="Texture2D" uid="uid://xbnt8o8o7hhy" path="res://images/Card_Back-88x124.png" id="1_f1iit"]
+[ext_resource type="Script" path="res://Scripts/card.cs" id="1_f3ft6"]
+[ext_resource type="Texture2D" uid="uid://xbnt8o8o7hhy" path="res://images/Card_Back-88x124.png" id="2_cudky"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgnu3"]
-atlas = ExtResource("1_f1iit")
+atlas = ExtResource("2_cudky")
 region = Rect2(0, 0, 88, 124)
 
 [node name="Card" type="Node2D"]
+script = ExtResource("1_f3ft6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_hgnu3")
