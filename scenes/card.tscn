@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq2bn4nr0ydr"]
+
+[ext_resource type="Texture2D" uid="uid://xbnt8o8o7hhy" path="res://images/Card_Back-88x124.png" id="1_f1iit"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgnu3"]
+atlas = ExtResource("1_f1iit")
+region = Rect2(0, 0, 88, 124)
+
+[node name="Card" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_hgnu3")
