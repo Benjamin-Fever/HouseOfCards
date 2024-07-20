@@ -1,0 +1,172 @@
+[gd_scene load_steps=12 format=3 uid="uid://b26ja7u0ilm41"]
+
+[ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_q4ke5"]
+[ext_resource type="PackedScene" uid="uid://d2w0nc71jm3a2" path="res://scenes/table.tscn" id="2_npir7"]
+[ext_resource type="Texture2D" uid="uid://bkrwhuda3av5x" path="res://assets/button UI.png" id="3_7rj6a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m4qs2"]
+font_size = 70
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mj2k"]
+atlas = ExtResource("3_7rj6a")
+region = Rect2(112, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psaue"]
+atlas = ExtResource("3_7rj6a")
+region = Rect2(144, 144, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_45td8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u4ocm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bdej7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxmp7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tmbo2"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_q4ke5")
+
+[node name="Table" parent="." instance=ExtResource("2_npir7")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TitleText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -252.0
+offset_right = 255.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "House of Cards"
+label_settings = SubResource("LabelSettings_m4qs2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = 18.0
+offset_right = 93.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_8mj2k")
+stretch_mode = 0
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = 18.0
+offset_right = -38.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_psaue")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 51.0
+offset_right = 91.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="Label2" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_right = -39.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = 2.0
+offset_right = -43.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_45td8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_u4ocm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bdej7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fxmp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tmbo2")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 49.0
+offset_top = 4.0
+offset_right = 86.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_45td8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_u4ocm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bdej7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fxmp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tmbo2")
+
+[connection signal="pressed" from="QuitButton" to="." method="OnQuitButtonPressed"]
+[connection signal="pressed" from="PlayButton" to="." method="OnPlayButtonPressed"]
