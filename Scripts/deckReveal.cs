@@ -15,48 +15,61 @@ public partial class deckReveal : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
 		int size = (int)Mathf.Sqrt(Deck.singleton.cards.Count);
-		HBoxContainer currentHbox = new HBoxContainer(){ SizeFlagsHorizontal = SizeFlags.ExpandFill, SizeFlagsVertical = SizeFlags.ExpandFill };
-		margin.AddChild(currentHbox);
-		for (int row = 0; row < size; row++){
-			currentHbox.AddChild(new VBoxContainer(){ SizeFlagsHorizontal = SizeFlags.ExpandFill, SizeFlagsVertical = SizeFlags.ExpandFill });
-			for (int col = 0; col < size; col++){
-				CardData cardData = Deck.singleton.cards[col * size + row];
-				TextureRect card = new TextureRect(){
-					SizeFlagsHorizontal = SizeFlags.ExpandFill,
-					SizeFlagsVertical = SizeFlags.ExpandFill,
-					Texture = getTexture(cardData)
-				};
-
-				currentHbox.GetChild(0).AddChild(card);
+		VBoxContainer vContainer = new VBoxContainer()
+		{
+			SizeFlagsHorizontal = SizeFlags.ExpandFill,
+            SizeFlagsVertical = SizeFlags.ExpandFill
+		};
+		GetNode("MarginContainer").AddChild(vContainer);
+		
+		for(int i = 0; i < size; i++){
+            HBoxContainer container = new HBoxContainer
+            {
+                SizeFlagsHorizontal = SizeFlags.ExpandFill,
+                SizeFlagsVertical = SizeFlags.ExpandFill
+            };
+            for (int j = 0; j < size; j++){
+                cardShown = new TextureRect
+                {
+                    ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                    SizeFlagsHorizontal = SizeFlags.ExpandFill,
+                    SizeFlagsVertical = SizeFlags.ExpandFill
+                };
+				CardData cardData = Deck.singleton.cards[(i*size)+j];
+				GD.Print(Deck.singleton.cards[0].Equals(cardData));
+				GD.Print(cardData.value);
+				flipCard(cardData);
+                container.AddChild(cardShown);
 			}
+			vContainer.AddChild(container);
+		}
+	}
+	public void flipCard(CardData cardData){
+		switch (cardData.cardSuit){
+			case CardData.suit.Spades:
+				setFrontTexture(_spades, cardData);
+				break;
+			case CardData.suit.Hearts:
+				setFrontTexture(_hearts, cardData);
+				break;
+			case CardData.suit.Diamonds:
+				setFrontTexture(_diamonds, cardData);
+				break;
+			case CardData.suit.Clubs:
+				setFrontTexture(_clubs, cardData);
+				break;
+		
 		}
 	}
 
-
-	private AtlasTexture getTexture(CardData cardData){
-		Texture2D texture2D = new Texture2D();
-		switch (cardData.cardSuit){
-			case CardData.suit.Spades:
-				texture2D = _spades;
-				break;
-			case CardData.suit.Hearts:
-				texture2D = _hearts;
-				break;
-			case CardData.suit.Diamonds:
-				texture2D = _diamonds;
-				break;
-			case CardData.suit.Clubs:
-				texture2D = _clubs;
-				break;
-		}
-
+	private void setFrontTexture(Texture2D cardTexture, CardData cardData){
 		int y = Mathf.CeilToInt(cardData.value / 5);
 		int x = cardData.value % 5;
 		AtlasTexture singleCardTexture = new AtlasTexture(){
-			Atlas = texture2D,
+			Atlas = cardTexture,
 			Region = new Rect2(190 * x, 270 * y, 190, 270)
 		};
-		return singleCardTexture;
+		cardShown.Texture = singleCardTexture;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
