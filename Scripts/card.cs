@@ -9,14 +9,13 @@ public partial class Card : Node2D {
 	[Export] private Texture2D _clubs;
 	[ExportGroup("Refrences")]
 	[Export] private Sprite2D _cardFront;
+	[Export] private Sprite2D _cardBack;
 
 	public CardData cardData;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready() {
-		flipCard();
-	}
 
-	private void flipCard(){
+	public void flipCard(){
+		_cardFront.Visible = true;
+		_cardBack.Visible = false;
 		switch (cardData.cardSuit){
 			case CardData.suit.Spades:
 				setFrontTexture(_spades);

@@ -11,18 +11,19 @@
 atlas = ExtResource("6_o4lfx")
 region = Rect2(0, 0, 190, 270)
 
-[node name="Card" type="Node2D" node_paths=PackedStringArray("_cardFront")]
+[node name="Card" type="Node2D" node_paths=PackedStringArray("_cardFront", "_cardBack")]
 script = ExtResource("1_f3ft6")
 _spades = ExtResource("2_fbkwv")
 _hearts = ExtResource("3_exfar")
 _diamonds = ExtResource("4_na4ph")
 _clubs = ExtResource("6_o4lfx")
 _cardFront = NodePath("cardFront")
+_cardBack = NodePath("cardBack")
 
 [node name="cardFront" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 texture = SubResource("AtlasTexture_e3agd")
 
 [node name="cardBack" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("7_nmmvy")

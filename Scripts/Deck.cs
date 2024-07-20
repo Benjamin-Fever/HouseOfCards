@@ -7,6 +7,7 @@ public partial class Deck : Node2D {
     [Export] private int _deckSize = 16;
     [Export] private int _jokerCount = 6;
     [Export] private int _pictureCardCount = 4;
+    [Export] private Sprite2D sprite;
 
 	[Export] private PackedScene _cardScene;
 
@@ -66,7 +67,8 @@ public partial class Deck : Node2D {
     public override void _Input(InputEvent @event) {
         if (Main.currentTurn == Main.Turn.OP) { return; }
         Vector2 mousePos = GetLocalMousePosition();
-        Rect2 rect = new Rect2(-190/2, -350/2, 190/2, 350/2);
+        
+        Rect2 rect = sprite.GetRect();
         if(@event is InputEventMouseButton mouseButton && rect.HasPoint(mousePos)){
             if(mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed()){
                 Card card = DrawCard();
@@ -87,6 +89,16 @@ public partial class Deck : Node2D {
         else {
             card.GlobalPosition += new Vector2(0, 200);
         }
+        Timer timer = new Timer(){
+            OneShot = true,
+            WaitTime = 1,
+            Autostart = true
+        };
+        card.AddChild(timer);
+        timer.Timeout += () => {
+            GD.Print("Timeout");
+            card.flipCard();
+        };
         return card;
     }
 
