@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cq2bn4nr0ydr"]
 
 [ext_resource type="Script" path="res://Scripts/card.cs" id="1_f3ft6"]
-[ext_resource type="Texture2D" uid="uid://c5gdftwpwgfwi" path="res://images/SBS - 2D Poker Pack/Top-Down/Cards/Spades-88x124.png" id="2_grw10"]
-[ext_resource type="Texture2D" uid="uid://bcck3skx34gh" path="res://images/SBS - 2D Poker Pack/Top-Down/Cards/Hearts-88x124.png" id="3_616it"]
-[ext_resource type="Texture2D" uid="uid://bebkxscox57ff" path="res://images/SBS - 2D Poker Pack/Top-Down/Cards/Diamonds-88x124.png" id="4_4blef"]
+[ext_resource type="Texture2D" uid="uid://c5gdftwpwgfwi" path="res://images/SBS - 2D Poker Pack/Top-Down/Cards/Spades-88x124.png" id="2_t7q3e"]
+[ext_resource type="Texture2D" uid="uid://bcck3skx34gh" path="res://images/SBS - 2D Poker Pack/Top-Down/Cards/Hearts-88x124.png" id="3_470xw"]
+[ext_resource type="Texture2D" uid="uid://bebkxscox57ff" path="res://images/SBS - 2D Poker Pack/Top-Down/Cards/Diamonds-88x124.png" id="4_kk411"]
 [ext_resource type="Texture2D" uid="uid://don4nnour0qfv" path="res://images/SBS - 2D Poker Pack/Top-Down/Cards/Clubs-88x124.png" id="5_2r2pk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3agd"]
@@ -12,9 +12,9 @@ region = Rect2(0, 0, 88, 124)
 
 [node name="Card" type="Node2D" node_paths=PackedStringArray("cardFront")]
 script = ExtResource("1_f3ft6")
-spades = ExtResource("2_grw10")
-hearts = ExtResource("3_616it")
-diamonds = ExtResource("4_4blef")
+spades = ExtResource("2_t7q3e")
+hearts = ExtResource("3_470xw")
+diamonds = ExtResource("4_kk411")
 clubs = ExtResource("5_2r2pk")
 cardFront = NodePath("cardFront")
 
