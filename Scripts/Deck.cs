@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.Net;
 
 public partial class Deck : Node2D {
     [Signal] public delegate void CardDrawnEventHandler();
@@ -9,7 +10,7 @@ public partial class Deck : Node2D {
 
 	[Export] private PackedScene _cardScene;
 
-    private List<CardData> cards = new List<CardData>();
+    public List<CardData> cards = new List<CardData>();
     private static Deck singleton;
 
     public override void _Ready() {
@@ -63,7 +64,7 @@ public partial class Deck : Node2D {
     }
 
     public override void _Input(InputEvent @event) {
-        //if (Main.currentTurn == Main.Turn.OP) { return; }
+        if (Main.currentTurn == Main.Turn.OP) { return; }
         Vector2 mousePos = GetLocalMousePosition();
         Rect2 rect = new Rect2(-44, -70, 88, 140);
         if(@event is InputEventMouseButton mouseButton && rect.HasPoint(mousePos)){
@@ -87,6 +88,18 @@ public partial class Deck : Node2D {
             card.GlobalPosition += new Vector2(0, 200);
         }
         return card;
+    }
+
+    public static void RevealCard(int revealCount = 1){
+        Node2D revealedCards = new Node2D();
+        singleton.AddChild(revealedCards);
+        revealedCards.GlobalPosition = singleton.GlobalPosition;
+        for (int i = 0; i < revealCount; i++) {
+            Card card = singleton._cardScene.Instantiate<Card>();
+            card.cardData = singleton.cards[i];
+            revealedCards.AddChild(card);
+            card.Position += new Vector2(0, 40 * i);
+        }
     }
 }
 
