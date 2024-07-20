@@ -15,16 +15,16 @@ public partial class card : Node2D {
 	public override void _Ready() {
 		switch (cardInfo.cardSuit){
 			case cardData.suit.Spades:
-				cardFront.Texture = spades;
+				setFrontTexture(spades);
 				break;
 			case cardData.suit.Hearts:
-				cardFront.Texture = hearts;
+				setFrontTexture(hearts);
 				break;
 			case cardData.suit.Diamonds:
-				cardFront.Texture = diamonds;
+				setFrontTexture(diamonds);
 				break;
 			case cardData.suit.Clubs:
-				cardFront.Texture = clubs;
+				setFrontTexture(clubs);
 				break;
 		
 		}
