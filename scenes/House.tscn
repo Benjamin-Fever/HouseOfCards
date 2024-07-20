@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://lu4r4iag847k"]
+[gd_scene load_steps=4 format=3 uid="uid://lu4r4iag847k"]
 
-[node name="House" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/House.cs" id="1_6qgrx"]
+[ext_resource type="Texture2D" uid="uid://du0uixpd4ftp7" path="res://assets/cardHouse.png" id="2_kb7of"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p80l6"]
+atlas = ExtResource("2_kb7of")
+region = Rect2(0, -6, 394, 396)
+
+[node name="House" type="Node2D" node_paths=PackedStringArray("_house")]
+script = ExtResource("1_6qgrx")
+_house = NodePath("house")
+_houseT = ExtResource("2_kb7of")
+
+[node name="house" type="Sprite2D" parent="."]
+position = Vector2(559, 296)
+texture = SubResource("AtlasTexture_p80l6")
