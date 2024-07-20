@@ -8,6 +8,5 @@
 [node name="Table" parent="." instance=ExtResource("1_q5qhk")]
 
 [node name="Deck" parent="." instance=ExtResource("2_ve48p")]
-position = Vector2(423, -13)
 
 [node name="Camera2D" type="Camera2D" parent="."]
