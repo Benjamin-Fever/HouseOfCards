@@ -34,8 +34,8 @@ public partial class Card : Node2D {
 	}
 
 	private void setFrontTexture(Texture2D cardTexture){
-		int y = Mathf.CeilToInt(cardData.value / 5);
-		int x = cardData.value % 5;
+		int y = Mathf.FloorToInt((cardData.value -1) / 5f);
+		int x = (cardData.value -1) % 5;
 		AtlasTexture singleCardTexture = new AtlasTexture(){
 			Atlas = cardTexture,
 			Region = new Rect2(190 * x, 270 * y, 190, 270)

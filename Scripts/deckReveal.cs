@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Data;
 
 public partial class deckReveal : Control
 {
@@ -14,7 +15,8 @@ public partial class deckReveal : Control
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
-		int size = (int)Mathf.Sqrt(Deck.singleton.cards.Count);
+		bool fuck = false;
+		int rows = (int)Mathf.Ceil(Deck.singleton.cards.Count / 5.0f);
 		VBoxContainer vContainer = new VBoxContainer()
 		{
 			SizeFlagsHorizontal = SizeFlags.ExpandFill,
@@ -22,24 +24,27 @@ public partial class deckReveal : Control
 		};
 		GetNode("MarginContainer").AddChild(vContainer);
 		
-		for(int i = 0; i < size; i++){
+		for(int i = 0; i < rows; i++){
             HBoxContainer container = new HBoxContainer
             {
                 SizeFlagsHorizontal = SizeFlags.ExpandFill,
                 SizeFlagsVertical = SizeFlags.ExpandFill
             };
-            for (int j = 0; j < size; j++){
+            for (int j = 0; j < 5; j++){
                 cardShown = new TextureRect
                 {
                     ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                     SizeFlagsHorizontal = SizeFlags.ExpandFill,
                     SizeFlagsVertical = SizeFlags.ExpandFill
                 };
-				CardData cardData = Deck.singleton.cards[(i*size)+j];
-				GD.Print(Deck.singleton.cards[0].Equals(cardData));
-				GD.Print(cardData.value);
-				flipCard(cardData);
-                container.AddChild(cardShown);
+				if ((i*5)+j >= Deck.singleton.cards.Count){
+					fuck = true;
+				}
+				if (!fuck){
+					CardData cardData = Deck.singleton.cards[(i*5)+j];
+					flipCard(cardData);
+				}
+				container.AddChild(cardShown);
 			}
 			vContainer.AddChild(container);
 		}
@@ -63,8 +68,8 @@ public partial class deckReveal : Control
 	}
 
 	private void setFrontTexture(Texture2D cardTexture, CardData cardData){
-		int y = Mathf.CeilToInt(cardData.value / 5);
-		int x = cardData.value % 5;
+		int y = Mathf.FloorToInt((cardData.value -1) / 5f);
+		int x = (cardData.value -1) % 5;
 		AtlasTexture singleCardTexture = new AtlasTexture(){
 			Atlas = cardTexture,
 			Region = new Rect2(190 * x, 270 * y, 190, 270)

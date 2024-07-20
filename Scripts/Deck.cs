@@ -52,7 +52,7 @@ public partial class Deck : Node2D {
             }
 
             card.value = cardNum;
-            card.cardSuit = (CardData.suit)(int)GD.RandRange(0, 4);
+            card.cardSuit = (CardData.suit)GD.RandRange(0,3);
 
             cards.Add(card);
         }
