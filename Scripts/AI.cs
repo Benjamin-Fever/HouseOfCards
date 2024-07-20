@@ -16,6 +16,7 @@ public partial class AI : Node2D
 	}
 
 	public void OnAiCardDrawn(){
+		Main.currentTurn = Main.Turn.OP;
 		Control popup = GetNode<Control>("../CanvasLayer/Popup");
 		popup.Visible = false;
 		Card card = Deck.singleton.card;
@@ -23,6 +24,14 @@ public partial class AI : Node2D
 		card.flipCard();
 		checkDeck();
 		checkCard();
+	}
+
+	public void OnPlayerDrawsJoker(){
+		Main.currentTurn = Main.Turn.OP;
+		Control popup = GetNode<Control>("../CanvasLayer/Popup");
+		popup.Visible = false;
+		checkDeck();
+		turn();
 	}
 
 	private void checkDeck(){
@@ -69,6 +78,7 @@ public partial class AI : Node2D
 				//make player draw
 				Card card = Deck.DrawCard();
 				card.GlobalPosition = new Vector2(0, 200);
+				Main.currentTurn = Main.Turn.PLAYER;
 				Main.singleton.OnPlayerCardPlayed();
 			}
 			else if(decidingWeight > 80){
@@ -89,8 +99,8 @@ public partial class AI : Node2D
 					//make player draw
 					Card card = Deck.DrawCard();
 					card.GlobalPosition += new Vector2(0, 400);
+					Main.currentTurn = Main.Turn.PLAYER;
 					Main.singleton.OnPlayerCardPlayed();
-					
 				}
 			}	
 		}
@@ -121,6 +131,8 @@ public partial class AI : Node2D
 			Health health = GetNode<Health>("HealthAI");
 			health.RemoveHealth(1);
 			// TODO: change turns to player
+			Main.currentTurn = Main.Turn.PLAYER;
+			return;
 		}
 
 		turn();

@@ -38,6 +38,9 @@ public partial class Main : Node {
 		else{
 			Health health = GetNode<Health>("Health");
 			health.RemoveHealth(1);
+			currentTurn = Turn.OP;
+			AI ai = GetNode<AI>("AI");
+			ai.OnPlayerDrawsJoker();
 		}
 	}
 
