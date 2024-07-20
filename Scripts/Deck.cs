@@ -70,6 +70,8 @@ public partial class Deck : Node2D {
         if (Main.currentTurn == Main.Turn.OP) { return; }
         Control popup = GetNode<Control>("../CanvasLayer/Popup");
         if(popup.Visible){return;}
+        deckReveal reveal = GetNode<deckReveal>("../CanvasLayer/DeckReveal");
+        if(reveal.Visible){return;}
         Vector2 mousePos = GetLocalMousePosition();
         
         Rect2 rect = sprite.GetRect();

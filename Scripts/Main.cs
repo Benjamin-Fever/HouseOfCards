@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Main : Node {
 	public enum Turn {
@@ -12,6 +13,39 @@ public partial class Main : Node {
 
 	public override void _Ready() {
 		singleton = this;
+		deckTimerStart();
+	}
+
+	public void deckTimerStart(){
+		List<CardData> cards = Deck.singleton.cards;
+		Util.Shuffler(cards);
+		Timer timer = GetNode<Timer>("DeckTimer");
+		timer.Start();
+		deckReveal reveal = GetNode<deckReveal>("CanvasLayer/DeckReveal");
+		reveal.Visible = true;
+		Health AIHealth = GetNode<Health>("AI/HealthAI");
+		AIHealth.Visible = false;
+		Health Health = GetNode<Health>("Health");
+		Health.Visible = false;
+		Deck deck = GetNode<Deck>("Deck");
+		deck.Visible = false;
+		House house = GetNode<House>("House");
+		house.Visible = false;
+	}
+
+	public void deckTimerEnd(){
+		deckReveal reveal = GetNode<deckReveal>("CanvasLayer/DeckReveal");
+		reveal.Visible = false;
+		Health AIHealth = GetNode<Health>("AI/HealthAI");
+		AIHealth.Visible = true;
+		Health Health = GetNode<Health>("Health");
+		Health.Visible = true;
+		Deck deck = GetNode<Deck>("Deck");
+		deck.Visible = true;
+		House house = GetNode<House>("House");
+		house.Visible = true;
+		List<CardData> cards = Deck.singleton.cards;
+		Util.Shuffler(cards);
 	}
 
 	public override void _Process(double delta) {

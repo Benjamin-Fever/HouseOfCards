@@ -47,8 +47,12 @@ script = ExtResource("12_fnf0u")
 [node name="HealthAI" parent="AI" instance=ExtResource("5_346ug")]
 position = Vector2(292, -218)
 
-[node name="Timer" type="Timer" parent="AI"]
+[node name="AITimer" type="Timer" parent="AI"]
+
+[node name="DeckTimer" type="Timer" parent="."]
+wait_time = 5.0
 
 [connection signal="CardDrawn" from="Deck" to="." method="OnPlayerCardDrawn"]
 [connection signal="ActionPassed" from="CanvasLayer/Popup" to="AI" method="OnAiCardDrawn"]
 [connection signal="ActionPlayed" from="CanvasLayer/Popup" to="." method="OnPlayerCardPlayed"]
+[connection signal="timeout" from="DeckTimer" to="." method="deckTimerEnd"]

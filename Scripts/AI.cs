@@ -71,7 +71,7 @@ public partial class AI : Node2D
 
 	public void turn(){	
 		if(GD.RandRange(0,100) < difficulty){
-			int decidingWeight = (100/deckSize * powerCardCount) * 3 - (100/deckSize * blankCount) - (100/deckSize * jokerCount) * 2;
+			int decidingWeight = (100/deckSize * powerCardCount) * 2 - (100/deckSize * blankCount) - (100/deckSize * jokerCount) * 3;
 
 			if(decidingWeight < 50){
 				GD.Print("plyaer turn 1");
