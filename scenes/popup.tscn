@@ -1,17 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3qn1j3u40qi7"]
+[gd_scene load_steps=11 format=3 uid="uid://qg15u6lxc8c5"]
 
-[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_kuexv"]
-[ext_resource type="PackedScene" uid="uid://d2w0nc71jm3a2" path="res://scenes/table.tscn" id="1_q5qhk"]
-[ext_resource type="PackedScene" uid="uid://n434b38v67xs" path="res://scenes/Deck.tscn" id="2_ve48p"]
-[ext_resource type="Texture2D" uid="uid://b65mdk338ec0u" path="res://assets/panel-background.png" id="4_2r7ih"]
-[ext_resource type="Texture2D" uid="uid://bkrwhuda3av5x" path="res://assets/button UI.png" id="5_f86w0"]
+[ext_resource type="Script" path="res://scenes/ActionPopup.cs" id="1_mhj82"]
+[ext_resource type="Texture2D" uid="uid://b65mdk338ec0u" path="res://assets/panel-background.png" id="2_lln4m"]
+[ext_resource type="Texture2D" uid="uid://bkrwhuda3av5x" path="res://assets/button UI.png" id="3_l8hp7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6uc0"]
-atlas = ExtResource("5_f86w0")
+atlas = ExtResource("3_l8hp7")
 region = Rect2(112, 144, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5u8gw"]
-atlas = ExtResource("5_f86w0")
+atlas = ExtResource("3_l8hp7")
 region = Rect2(144, 144, 16, 16)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o6vw0"]
@@ -24,18 +22,7 @@ region = Rect2(144, 144, 16, 16)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_alend"]
 
-[node name="Main" type="Node"]
-script = ExtResource("1_kuexv")
-
-[node name="Table" parent="." instance=ExtResource("1_q5qhk")]
-
-[node name="Deck" parent="." instance=ExtResource("2_ve48p")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Popup" type="Control" parent="CanvasLayer"]
+[node name="Popup" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,8 +35,9 @@ offset_right = 150.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mhj82")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Popup"]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -65,7 +53,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Popup"]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -78,14 +66,14 @@ offset_right = 150.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_2r7ih")
+texture = ExtResource("2_lln4m")
 region_rect = Rect2(0, 0, 48, 48)
 patch_margin_left = 20
 patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Popup"]
+[node name="TextureButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -104,7 +92,7 @@ size_flags_vertical = 4
 texture_normal = SubResource("AtlasTexture_l6uc0")
 stretch_mode = 0
 
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Popup"]
+[node name="TextureButton2" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -123,7 +111,7 @@ size_flags_vertical = 4
 texture_normal = SubResource("AtlasTexture_5u8gw")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/Popup"]
+[node name="Label" type="Label" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -138,7 +126,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Play"
 
-[node name="Label2" type="Label" parent="CanvasLayer/Popup"]
+[node name="Label2" type="Label" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -153,7 +141,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Pass"
 
-[node name="Label3" type="Label" parent="CanvasLayer/Popup"]
+[node name="Label3" type="Label" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -171,7 +159,7 @@ text = "Would you like to play this card for yourself or pass to the opponent"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Button" type="Button" parent="CanvasLayer/Popup"]
+[node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -190,7 +178,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_sr125")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_1uc43")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_alend")
 
-[node name="Button2" type="Button" parent="CanvasLayer/Popup"]
+[node name="Button2" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -209,4 +197,5 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_sr125")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_1uc43")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_alend")
 
-[connection signal="CardDrawn" from="Deck" to="." method="OnPlayerCardDrawn"]
+[connection signal="pressed" from="Button" to="." method="OnActionPassed"]
+[connection signal="pressed" from="Button2" to="." method="OnActionPlayed"]
