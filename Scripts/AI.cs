@@ -4,6 +4,7 @@ using System;
 public partial class AI : Node2D
 {
 	[Export] private int difficulty = 50;
+	[Export] private Timer timer;
 
 	private int jokerCount = 0;
 	private int powerCardCount = 0;
@@ -22,7 +23,6 @@ public partial class AI : Node2D
 		card.flipCard();
 		checkDeck();
 		checkCard();
-		turn();
 	}
 
 	private void checkDeck(){
@@ -65,11 +65,10 @@ public partial class AI : Node2D
 			int decidingWeight = (100/deckSize * powerCardCount) * 3 - (100/deckSize * blankCount) - (100/deckSize * jokerCount) * 2;
 
 			if(decidingWeight < 50){
-				GD.Print("plyaer turn");
+				GD.Print("plyaer turn 1");
 				//make player draw
 				Card card = Deck.DrawCard();
-				card.GlobalPosition += new Vector2(0, 400);
-				Deck.singleton.card = card;
+				card.GlobalPosition = new Vector2(0, 200);
 				Main.singleton.OnPlayerCardPlayed();
 			}
 			else if(decidingWeight > 80){
@@ -86,11 +85,10 @@ public partial class AI : Node2D
 					checkCard();
 				}
 				else{
-					GD.Print("plyaer turn");
+					GD.Print("plyaer turn 2");
 					//make player draw
 					Card card = Deck.DrawCard();
 					card.GlobalPosition += new Vector2(0, 400);
-					Deck.singleton.card = card;
 					Main.singleton.OnPlayerCardPlayed();
 					
 				}
@@ -119,14 +117,12 @@ public partial class AI : Node2D
 
 		}
 		else{
+			GD.Print("AI got a joker");
 			Health health = GetNode<Health>("HealthAI");
 			health.RemoveHealth(1);
+			// TODO: change turns to player
 		}
-		turn();
-	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+		turn();
 	}
 }

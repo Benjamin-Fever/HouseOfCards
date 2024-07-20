@@ -13,7 +13,11 @@ public partial class Card : Node2D {
 
 	public CardData cardData;
 
-	public void flipCard(){
+    public override void _Ready() {
+        GD.Print(cardData);
+    }
+
+    public void flipCard(){
 		_cardFront.Visible = true;
 		_cardBack.Visible = false;
 		switch (cardData.cardSuit){
