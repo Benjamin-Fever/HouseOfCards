@@ -2,6 +2,7 @@ using Godot;
 using System.Collections.Generic;
 
 public partial class Deck : Node2D {
+    [Signal] public delegate void CardDrawnEventHandler();
     [Export] private int _deckSize = 16;
     [Export] private int _jokerCount = 6;
     [Export] private int _pictureCardCount = 4;
@@ -9,8 +10,10 @@ public partial class Deck : Node2D {
 	[Export] private PackedScene _cardScene;
 
     private List<CardData> cards = new List<CardData>();
+    private static Deck singleton;
 
     public override void _Ready() {
+        singleton = this;
         int cardNum;
         for (int i = 0; i < _deckSize; i++) {
             CardData card;
@@ -19,7 +22,7 @@ public partial class Deck : Node2D {
                 _jokerCount--;
             }
             else if (_pictureCardCount > 0) {
-                int caseNum = (int)GD.RandRange(1, 5);
+                int caseNum = GD.RandRange(1, 5);
                 switch (caseNum) {
                     case 1:
                         cardNum = 10;
@@ -60,20 +63,30 @@ public partial class Deck : Node2D {
     }
 
     public override void _Input(InputEvent @event) {
+        //if (Main.currentTurn == Main.Turn.OP) { return; }
         Vector2 mousePos = GetLocalMousePosition();
-		if(mousePos.X > -44 && mousePos.X < 44){
-			if(mousePos.Y > -70 && mousePos.Y < 70){
-				if(@event is InputEventMouseButton mouseButton){
-					if(mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed()){
-						Card crd = _cardScene.Instantiate<Card>();
-						CardData c = cards[0];
-						crd.cardData = c;
-						AddChild(crd);
-						GetViewport().SetInputAsHandled();
-					}
-				}
+        Rect2 rect = new Rect2(-44, -70, 88, 140);
+        if(@event is InputEventMouseButton mouseButton && rect.HasPoint(mousePos)){
+            if(mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed()){
+                Card card = DrawCard();
+                EmitSignal(SignalName.CardDrawn);
 			}
 		}
+    }
+
+    public static Card DrawCard() {
+        Card card = singleton._cardScene.Instantiate<Card>();
+        card.cardData = singleton.cards[0];
+        singleton.cards.RemoveAt(0);
+        singleton.AddChild(card);
+        if (Main.currentTurn == Main.Turn.OP) {
+            card.RotationDegrees = 180;
+            card.GlobalPosition += new Vector2(0, -200);
+        }
+        else {
+            card.GlobalPosition += new Vector2(0, 200);
+        }
+        return card;
     }
 }
 

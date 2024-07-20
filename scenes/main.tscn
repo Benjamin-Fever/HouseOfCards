@@ -12,3 +12,5 @@ script = ExtResource("1_kuexv")
 [node name="Deck" parent="." instance=ExtResource("2_ve48p")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="CardDrawn" from="Deck" to="." method="OnPlayerCardDrawn"]
