@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3qn1j3u40qi7"]
+[gd_scene load_steps=6 format=3 uid="uid://b3qn1j3u40qi7"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_kuexv"]
 [ext_resource type="PackedScene" uid="uid://d2w0nc71jm3a2" path="res://scenes/table.tscn" id="1_q5qhk"]
 [ext_resource type="PackedScene" uid="uid://n434b38v67xs" path="res://scenes/Deck.tscn" id="2_ve48p"]
 [ext_resource type="PackedScene" uid="uid://qg15u6lxc8c5" path="res://scenes/popup.tscn" id="4_2xf01"]
+[ext_resource type="PackedScene" uid="uid://bqy8hnhqc7ohc" path="res://scenes/health.tscn" id="5_346ug"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kuexv")
@@ -13,6 +14,11 @@ script = ExtResource("1_kuexv")
 [node name="Deck" parent="." instance=ExtResource("2_ve48p")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Health" parent="." instance=ExtResource("5_346ug")]
+position = Vector2(-378, 215)
+MaxHealth = 6
+CurrentHealth = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqy8hnhqc7ohc"]
+
+[ext_resource type="Script" path="res://scenes/Health.cs" id="1_sub6d"]
+[ext_resource type="PackedScene" uid="uid://bqt2vfvap52fm" path="res://scenes/heart.tscn" id="2_uslef"]
+
+[node name="Health" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_sub6d")
+MaxHealth = 7
+heart = ExtResource("2_uslef")
+
+[node name="Heart" parent="." instance=ExtResource("2_uslef")]
+position = Vector2(0, 0)
