@@ -73,19 +73,26 @@ public partial class Deck : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-		Vector2 mousePos = GetLocalMousePosition();
+
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        Vector2 mousePos = GetLocalMousePosition();
 		if(mousePos.X > -44 && mousePos.X < 44){
 			if(mousePos.Y > -70 && mousePos.Y < 70){
-				if(Input.GetMouseButtonMask() == MouseButtonMask.Left){
-					card crd = cardScene.Instantiate<card>();
-					cardData c = cards[0];
-					crd.cardInfo = c;
-					AddChild(crd);
+				if(@event is InputEventMouseButton mouseButton){
+					if(mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed()){
+						card crd = cardScene.Instantiate<card>();
+						cardData c = cards[0];
+						crd.cardInfo = c;
+						AddChild(crd);
+						GetViewport().SetInputAsHandled();
+					}
 				}
 			}
 		}
     }
- 
 }
 
 public struct cardData
