@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dfejrvyod07m7" path="res://assets/Cards/BACK.png" id="7_nmmvy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3agd"]
-atlas = ExtResource("7_nmmvy")
-region = Rect2(0, 0, 88, 124)
+atlas = ExtResource("6_o4lfx")
+region = Rect2(0, 0, 190, 270)
 
 [node name="Card" type="Node2D" node_paths=PackedStringArray("_cardFront", "_cardBack")]
 script = ExtResource("1_f3ft6")
@@ -25,5 +25,4 @@ texture_filter = 1
 texture = SubResource("AtlasTexture_e3agd")
 
 [node name="cardBack" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("7_nmmvy")

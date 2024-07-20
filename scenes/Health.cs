@@ -15,8 +15,8 @@ public partial class Health : Node2D {
 		UpdateHealthDisplay();
 	}
 
-	public void ChangeHealth(int change){
-		CurrentHealth += change;
+	public void RemoveHealth(int change){
+		CurrentHealth -= change;
 		if (CurrentHealth > MaxHealth){
 			CurrentHealth = MaxHealth;
 		}
@@ -29,7 +29,7 @@ public partial class Health : Node2D {
 	private void UpdateHealthDisplay(){
 		// Remove all existing heart nodes
 		foreach (Node child in GetChildren()){
-			child.QueueFree();
+			child.Free();
 		}
 		
 		// Add hearts according to MaxHealth

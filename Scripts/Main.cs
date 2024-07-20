@@ -26,6 +26,7 @@ public partial class Main : Node {
 		Control popup = GetNode<Control>("CanvasLayer/Popup");
 		popup.Visible = false;
 		Card card = Deck.singleton.card;
+		card.flipCard();
 		if(card.cardData.value > 1 && card.cardData.value < 11){
 			CardCounter++;
 			House house = GetNode<House>("House");
@@ -36,7 +37,7 @@ public partial class Main : Node {
 		}
 		else{
 			Health health = GetNode<Health>("Health");
-			health.ChangeHealth(-1);
+			health.RemoveHealth(1);
 		}
 	}
 }

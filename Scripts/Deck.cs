@@ -91,16 +91,6 @@ public partial class Deck : Node2D {
         else {
             card.GlobalPosition += new Vector2(0, 200);
         }
-        Timer timer = new Timer(){
-            OneShot = true,
-            WaitTime = 1,
-            Autostart = true
-        };
-        card.AddChild(timer);
-        timer.Timeout += () => {
-            GD.Print("Timeout");
-            card.flipCard();
-        };
         singleton.card = card;
         return card;
     }
