@@ -1,14 +1,18 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Godot.Collections;
 
 public partial class Deck : Node2D
 {
     [Export] public int deckSize;
     [Export] public int jokerCount;
     [Export] public int pictureCardCount;
+
+	[Export] public PackedScene cardScene;
     // Called when the node enters the scene tree for the first time.
-    ArrayList cards = new ArrayList();
+    List<cardData> cards = new List<cardData>();
     public override void _Ready()
     {
         int cardNum;
@@ -58,6 +62,8 @@ public partial class Deck : Node2D
             cards.Add(card);
         }
 
+		Shuffle.Shuffler<cardData>(cards);
+
         foreach (cardData c in cards)
         {
             GD.Print($"Card: {c.value} of {c.cardSuit}");
@@ -67,7 +73,19 @@ public partial class Deck : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+		Vector2 mousePos = GetLocalMousePosition();
+		if(mousePos.X > -44 && mousePos.X < 44){
+			if(mousePos.Y > -70 && mousePos.Y < 70){
+				if(Input.GetMouseButtonMask() == MouseButtonMask.Left){
+					card crd = cardScene.Instantiate<card>();
+					cardData c = cards[0];
+					crd.cardInfo = c;
+					AddChild(crd);
+				}
+			}
+		}
     }
+ 
 }
 
 public struct cardData
@@ -76,3 +94,4 @@ public struct cardData
     public int value;
     public suit cardSuit;
 }
+
