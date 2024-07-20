@@ -21,3 +21,5 @@ _cardFront = NodePath("cardFront")
 [node name="cardFront" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = SubResource("AtlasTexture_e3agd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
