@@ -13,5 +13,4 @@ _house = NodePath("house")
 _houseT = ExtResource("2_kb7of")
 
 [node name="house" type="Sprite2D" parent="."]
-position = Vector2(559, 296)
 texture = SubResource("AtlasTexture_p80l6")
