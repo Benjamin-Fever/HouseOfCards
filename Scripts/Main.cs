@@ -40,4 +40,5 @@ public partial class Main : Node {
 			health.RemoveHealth(1);
 		}
 	}
+
 }

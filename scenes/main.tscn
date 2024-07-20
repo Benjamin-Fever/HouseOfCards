@@ -1,16 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3qn1j3u40qi7"]
+[gd_scene load_steps=13 format=3 uid="uid://b3qn1j3u40qi7"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_kuexv"]
 [ext_resource type="PackedScene" uid="uid://d2w0nc71jm3a2" path="res://scenes/table.tscn" id="1_q5qhk"]
 [ext_resource type="PackedScene" uid="uid://c8sww0m7b1drd" path="res://scenes/deckReveal.tscn" id="2_3bdv1"]
 [ext_resource type="PackedScene" uid="uid://n434b38v67xs" path="res://scenes/Deck.tscn" id="2_ve48p"]
 [ext_resource type="Texture2D" uid="uid://ddg6md3qnduxl" path="res://assets/Cards/spadeCards.png" id="3_lmplq"]
-[ext_resource type="PackedScene" uid="uid://qg15u6lxc8c5" path="res://scenes/popup.tscn" id="4_2xf01"]
+[ext_resource type="PackedScene" path="res://scenes/popup.tscn" id="4_2xf01"]
 [ext_resource type="Texture2D" uid="uid://xj2qjh1ei5kv" path="res://assets/Cards/heartCards.png" id="4_wjnnh"]
 [ext_resource type="Texture2D" uid="uid://lhgtaekslihh" path="res://assets/Cards/diamondCards.png" id="5_7lx5p"]
 [ext_resource type="PackedScene" uid="uid://bqy8hnhqc7ohc" path="res://scenes/health.tscn" id="5_346ug"]
 [ext_resource type="Texture2D" uid="uid://d1gswd6c1lwym" path="res://assets/Cards/clubCards.png" id="6_4hwp7"]
 [ext_resource type="PackedScene" uid="uid://lu4r4iag847k" path="res://scenes/House.tscn" id="11_xlfpf"]
+[ext_resource type="Script" path="res://Scripts/AI.cs" id="12_fnf0u"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kuexv")
@@ -22,8 +23,7 @@ script = ExtResource("1_kuexv")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Health" parent="." instance=ExtResource("5_346ug")]
-position = Vector2(-378, 215)
-CurrentHealth = 4
+position = Vector2(-459, 238)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -41,5 +41,12 @@ _clubs = ExtResource("6_4hwp7")
 position = Vector2(448, 232)
 scale = Vector2(0.5, 0.5)
 
+[node name="AI" type="Node2D" parent="."]
+script = ExtResource("12_fnf0u")
+
+[node name="HealthAI" parent="AI" instance=ExtResource("5_346ug")]
+position = Vector2(292, -218)
+
 [connection signal="CardDrawn" from="Deck" to="." method="OnPlayerCardDrawn"]
+[connection signal="ActionPassed" from="CanvasLayer/Popup" to="AI" method="OnAiCardDrawn"]
 [connection signal="ActionPlayed" from="CanvasLayer/Popup" to="." method="OnPlayerCardPlayed"]

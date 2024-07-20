@@ -12,6 +12,15 @@ public partial class AI : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+	}
+
+	public void OnAiCardDrawn(){
+		Control popup = GetNode<Control>("../CanvasLayer/Popup");
+		popup.Visible = false;
+		Card card = Deck.singleton.card;
+		card.GlobalPosition += new Vector2(0, -400);
+		card.flipCard();
+
 		checkDeck();
 		turn();
 	}
@@ -56,6 +65,7 @@ public partial class AI : Node2D
 			int decidingWeight = (100/deckSize * powerCardCount) * 3 - (100/deckSize * blankCount) - (100/deckSize * jokerCount) * 2;
 
 			if(decidingWeight < 50){
+				GD.Print("plyaer turn");
 				//make player draw
 				Card card = Deck.DrawCard();
 				card.GlobalPosition += new Vector2(0, 400);
@@ -63,15 +73,20 @@ public partial class AI : Node2D
 				Main.singleton.OnPlayerCardPlayed();
 			}
 			else if(decidingWeight > 80){
+				GD.Print("ai turn");
 				//ai draws
 				Card card = Deck.DrawCard();
+				checkCard();
 			} 
 			else{
 				if(decidingWeight + (100/deckSize * blankCount) > 60){
+					GD.Print("ai turn");
 					//ai draws
 					Card card = Deck.DrawCard();
+					checkCard();
 				}
 				else{
+					GD.Print("plyaer turn");
 					//make player draw
 				Card card = Deck.DrawCard();
 				card.GlobalPosition += new Vector2(0, 400);
@@ -82,9 +97,31 @@ public partial class AI : Node2D
 			}	
 		}
 		else{
+			GD.Print("ai turn");
 			//ai draws
 			Card card = Deck.DrawCard();
+			checkCard();
 		}
+	}
+
+	public void checkCard(){
+		Control popup = GetNode<Control>("../CanvasLayer/Popup");
+		popup.Visible = false;
+		Card card = Deck.singleton.card;
+		card.flipCard();
+		if(card.cardData.value > 1 && card.cardData.value < 11){
+			//CardCounter++;
+			//House house = GetNode<House>("House");
+			//house.setTexture(CardCounter);
+		}
+		else if(card.cardData.value == 1 || (card.cardData.value > 10 && card.cardData.value < 14)){
+
+		}
+		else{
+			Health health = GetNode<Health>("HealthAI");
+			health.RemoveHealth(1);
+		}
+		turn();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
