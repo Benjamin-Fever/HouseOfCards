@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b26ja7u0ilm41"]
+[gd_scene load_steps=13 format=3 uid="uid://b26ja7u0ilm41"]
 
-[ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_q4ke5"]
+[ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_61bxk"]
 [ext_resource type="PackedScene" uid="uid://d2w0nc71jm3a2" path="res://scenes/table.tscn" id="2_npir7"]
+[ext_resource type="Texture2D" uid="uid://copijmai77fsw" path="res://assets/Cards/BACK_blank.png" id="2_tp1ei"]
 [ext_resource type="Texture2D" uid="uid://bkrwhuda3av5x" path="res://assets/button UI.png" id="3_7rj6a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_m4qs2"]
@@ -15,7 +16,7 @@ region = Rect2(112, 144, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psaue"]
 atlas = ExtResource("3_7rj6a")
-region = Rect2(144, 144, 16, 16)
+region = Rect2(160, 160, 16, 16)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_45td8"]
 
@@ -38,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_q4ke5")
+script = ExtResource("1_61bxk")
 
 [node name="Table" parent="." instance=ExtResource("2_npir7")]
 
@@ -62,6 +63,16 @@ label_settings = SubResource("LabelSettings_m4qs2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-64, 36)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tp1ei")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(64, 36)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tp1ei")
+
 [node name="TextureButton" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 1
@@ -70,10 +81,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 48.0
-offset_top = 18.0
-offset_right = 93.0
-offset_bottom = 63.0
+offset_left = 44.0
+offset_top = 16.0
+offset_right = 89.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -89,10 +100,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = 18.0
-offset_right = -38.0
-offset_bottom = 63.0
+offset_left = -87.0
+offset_top = 15.0
+offset_right = -42.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -108,12 +119,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 51.0
-offset_right = 91.0
-offset_bottom = 23.0
+offset_left = 43.0
+offset_top = -14.0
+offset_right = 83.0
+offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Play"
+horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
 texture_filter = 1
@@ -123,12 +136,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -79.0
-offset_right = -39.0
-offset_bottom = 23.0
+offset_left = -84.0
+offset_top = -15.0
+offset_right = -44.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Quit"
+horizontal_alignment = 1
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 1
@@ -137,10 +152,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = 2.0
-offset_right = -43.0
-offset_bottom = 53.0
+offset_left = -111.0
+offset_top = -31.0
+offset_right = -16.0
+offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_45td8")
@@ -156,10 +171,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 49.0
-offset_top = 4.0
-offset_right = 86.0
-offset_bottom = 52.0
+offset_left = 16.0
+offset_top = -31.0
+offset_right = 112.0
+offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_45td8")
