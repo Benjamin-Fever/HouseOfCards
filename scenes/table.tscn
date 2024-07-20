@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2w0nc71jm3a2"]
+[gd_scene load_steps=4 format=3 uid="uid://d2w0nc71jm3a2"]
 
-[ext_resource type="Texture2D" uid="uid://hqeh68bog3c7" path="res://assets/table-top.jpg" id="1_wtehr"]
+[sub_resource type="Gradient" id="Gradient_mjpwh"]
+colors = PackedColorArray(0.290196, 0.501961, 0.305882, 1, 0.392157, 0.654902, 0.415686, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xylmo"]
+frequency = 0.002
+fractal_lacunarity = 3.08
+fractal_gain = 1.175
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0wxqr"]
+width = 1152
+height = 648
+color_ramp = SubResource("Gradient_mjpwh")
+noise = SubResource("FastNoiseLite_xylmo")
 
 [node name="Table" type="Node2D"]
-scale = Vector2(2.13333, 1.80833)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_wtehr")
+texture = SubResource("NoiseTexture2D_0wxqr")

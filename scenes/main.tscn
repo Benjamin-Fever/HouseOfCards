@@ -15,8 +15,8 @@ script = ExtResource("1_kuexv")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Popup" parent="CanvasLayer" instance=ExtResource("4_2xf01")]
-visible = false
 
 [connection signal="CardDrawn" from="Deck" to="." method="OnPlayerCardDrawn"]

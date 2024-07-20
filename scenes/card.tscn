@@ -1,25 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq2bn4nr0ydr"]
+[gd_scene load_steps=8 format=3 uid="uid://cq2bn4nr0ydr"]
 
 [ext_resource type="Script" path="res://Scripts/Card.cs" id="1_f3ft6"]
-[ext_resource type="Texture2D" uid="uid://c5gdftwpwgfwi" path="res://assets/Cards/spade-cards.png" id="2_t7q3e"]
-[ext_resource type="Texture2D" uid="uid://bcck3skx34gh" path="res://assets/Cards/heart-cards.png" id="3_470xw"]
-[ext_resource type="Texture2D" uid="uid://bebkxscox57ff" path="res://assets/Cards/diamond-cards.png" id="4_kk411"]
-[ext_resource type="Texture2D" uid="uid://don4nnour0qfv" path="res://assets/Cards/clubs-cards.png" id="5_2r2pk"]
+[ext_resource type="Texture2D" uid="uid://ddg6md3qnduxl" path="res://assets/Cards/spadeCards.png" id="2_fbkwv"]
+[ext_resource type="Texture2D" uid="uid://xj2qjh1ei5kv" path="res://assets/Cards/heartCards.png" id="3_exfar"]
+[ext_resource type="Texture2D" uid="uid://lhgtaekslihh" path="res://assets/Cards/diamondCards.png" id="4_na4ph"]
+[ext_resource type="Texture2D" uid="uid://d1gswd6c1lwym" path="res://assets/Cards/clubCards.png" id="6_o4lfx"]
+[ext_resource type="Texture2D" uid="uid://dfejrvyod07m7" path="res://assets/Cards/BACK.png" id="7_nmmvy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3agd"]
-atlas = ExtResource("5_2r2pk")
-region = Rect2(0, 0, 88, 124)
+atlas = ExtResource("6_o4lfx")
+region = Rect2(0, 0, 190, 270)
 
-[node name="Card" type="Node2D" node_paths=PackedStringArray("_cardFront")]
+[node name="Card" type="Node2D" node_paths=PackedStringArray("_cardFront", "_cardBack")]
 script = ExtResource("1_f3ft6")
-_spades = ExtResource("2_t7q3e")
-_hearts = ExtResource("3_470xw")
-_diamonds = ExtResource("4_kk411")
-_clubs = ExtResource("5_2r2pk")
+_spades = ExtResource("2_fbkwv")
+_hearts = ExtResource("3_exfar")
+_diamonds = ExtResource("4_na4ph")
+_clubs = ExtResource("6_o4lfx")
 _cardFront = NodePath("cardFront")
+_cardBack = NodePath("cardBack")
 
 [node name="cardFront" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 texture = SubResource("AtlasTexture_e3agd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="cardBack" type="Sprite2D" parent="."]
+texture = ExtResource("7_nmmvy")

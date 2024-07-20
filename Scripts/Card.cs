@@ -9,14 +9,13 @@ public partial class Card : Node2D {
 	[Export] private Texture2D _clubs;
 	[ExportGroup("Refrences")]
 	[Export] private Sprite2D _cardFront;
+	[Export] private Sprite2D _cardBack;
 
 	public CardData cardData;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready() {
-		
-	}
 
-	private void flipCard(){
+	public void flipCard(){
+		_cardFront.Visible = true;
+		_cardBack.Visible = false;
 		switch (cardData.cardSuit){
 			case CardData.suit.Spades:
 				setFrontTexture(_spades);
@@ -39,7 +38,7 @@ public partial class Card : Node2D {
 		int x = cardData.value % 5;
 		AtlasTexture singleCardTexture = new AtlasTexture(){
 			Atlas = cardTexture,
-			Region = new Rect2(88 * x, 124 * y, 88, 124)
+			Region = new Rect2(190 * x, 270 * y, 190, 270)
 		};
 		_cardFront.Texture = singleCardTexture;
 	}
