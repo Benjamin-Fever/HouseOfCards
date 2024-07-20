@@ -20,8 +20,8 @@ public partial class AI : Node2D
 		Card card = Deck.singleton.card;
 		card.GlobalPosition += new Vector2(0, -400);
 		card.flipCard();
-
 		checkDeck();
+		checkCard();
 		turn();
 	}
 
@@ -88,10 +88,10 @@ public partial class AI : Node2D
 				else{
 					GD.Print("plyaer turn");
 					//make player draw
-				Card card = Deck.DrawCard();
-				card.GlobalPosition += new Vector2(0, 400);
-				Deck.singleton.card = card;
-				Main.singleton.OnPlayerCardPlayed();
+					Card card = Deck.DrawCard();
+					card.GlobalPosition += new Vector2(0, 400);
+					Deck.singleton.card = card;
+					Main.singleton.OnPlayerCardPlayed();
 					
 				}
 			}	
@@ -105,6 +105,7 @@ public partial class AI : Node2D
 	}
 
 	public void checkCard(){
+		GD.Print("checking card");
 		Control popup = GetNode<Control>("../CanvasLayer/Popup");
 		popup.Visible = false;
 		Card card = Deck.singleton.card;
