@@ -78,6 +78,7 @@ public partial class AI : Node2D
 				//make player draw
 				Card card = Deck.DrawCard();
 				card.GlobalPosition = new Vector2(0, 200);
+				card.Rotation = 0;
 				Main.currentTurn = Main.Turn.PLAYER;
 				Main.singleton.OnPlayerCardPlayed();
 			}
@@ -99,6 +100,7 @@ public partial class AI : Node2D
 					//make player draw
 					Card card = Deck.DrawCard();
 					card.GlobalPosition += new Vector2(0, 400);
+					card.Rotation = 0;
 					Main.currentTurn = Main.Turn.PLAYER;
 					Main.singleton.OnPlayerCardPlayed();
 				}

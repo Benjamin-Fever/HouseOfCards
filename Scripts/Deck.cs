@@ -68,6 +68,8 @@ public partial class Deck : Node2D {
 
     public override void _Input(InputEvent @event) {
         if (Main.currentTurn == Main.Turn.OP) { return; }
+        Control popup = GetNode<Control>("../CanvasLayer/Popup");
+        if(popup.Visible){return;}
         Vector2 mousePos = GetLocalMousePosition();
         
         Rect2 rect = sprite.GetRect();
