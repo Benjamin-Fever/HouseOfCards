@@ -11,7 +11,7 @@ public partial class Deck : Node2D {
 	[Export] private PackedScene _cardScene;
 
     public List<CardData> cards = new List<CardData>();
-    private static Deck singleton;
+    public static Deck singleton;
 
     public override void _Ready() {
         singleton = this;
@@ -66,7 +66,7 @@ public partial class Deck : Node2D {
     public override void _Input(InputEvent @event) {
         if (Main.currentTurn == Main.Turn.OP) { return; }
         Vector2 mousePos = GetLocalMousePosition();
-        Rect2 rect = new Rect2(-44, -70, 88, 140);
+        Rect2 rect = new Rect2(-190/2, -350/2, 190/2, 350/2);
         if(@event is InputEventMouseButton mouseButton && rect.HasPoint(mousePos)){
             if(mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed()){
                 Card card = DrawCard();

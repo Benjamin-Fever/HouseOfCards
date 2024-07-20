@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://don4nnour0qfv"
-path="res://.godot/imported/clubs-cards.png-fabb16b1ee6a2290ad88cf191a85be85.ctex"
+uid="uid://cvr1qlox3g2kh"
+path="res://.godot/imported/deck.png-9bd7382b7a1f63a0e507a1d4025697f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Cards/clubs-cards.png"
-dest_files=["res://.godot/imported/clubs-cards.png-fabb16b1ee6a2290ad88cf191a85be85.ctex"]
+source_file="res://assets/Cards/deck.png"
+dest_files=["res://.godot/imported/deck.png-9bd7382b7a1f63a0e507a1d4025697f4.ctex"]
 
 [params]
 

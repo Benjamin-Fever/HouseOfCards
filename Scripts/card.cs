@@ -13,7 +13,7 @@ public partial class Card : Node2D {
 	public CardData cardData;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-		
+		flipCard();
 	}
 
 	private void flipCard(){
@@ -39,7 +39,7 @@ public partial class Card : Node2D {
 		int x = cardData.value % 5;
 		AtlasTexture singleCardTexture = new AtlasTexture(){
 			Atlas = cardTexture,
-			Region = new Rect2(88 * x, 124 * y, 88, 124)
+			Region = new Rect2(190 * x, 270 * y, 190, 270)
 		};
 		_cardFront.Texture = singleCardTexture;
 	}

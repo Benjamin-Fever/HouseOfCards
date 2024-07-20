@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://n434b38v67xs"]
+[gd_scene load_steps=4 format=3 uid="uid://n434b38v67xs"]
 
 [ext_resource type="Script" path="res://Scripts/Deck.cs" id="1_3prp7"]
 [ext_resource type="PackedScene" uid="uid://cq2bn4nr0ydr" path="res://scenes/card.tscn" id="2_io50r"]
-[ext_resource type="Texture2D" uid="uid://chdr3pbfq5ur7" path="res://assets/Cards/card-deck.png" id="2_v5dwf"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pseg0"]
-atlas = ExtResource("2_v5dwf")
-region = Rect2(88, 0, 88, 140)
+[ext_resource type="Texture2D" uid="uid://cvr1qlox3g2kh" path="res://assets/Cards/deck.png" id="3_kbnpy"]
 
 [node name="Deck" type="Node2D"]
 script = ExtResource("1_3prp7")
@@ -14,4 +10,4 @@ _cardScene = ExtResource("2_io50r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = SubResource("AtlasTexture_pseg0")
+texture = ExtResource("3_kbnpy")
