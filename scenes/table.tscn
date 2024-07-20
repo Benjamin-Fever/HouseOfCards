@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d2w0nc71jm3a2"]
 
-[ext_resource type="Texture2D" uid="uid://hqeh68bog3c7" path="res://images/tabletoptemp.jpg" id="1_wtehr"]
+[ext_resource type="Texture2D" uid="uid://hqeh68bog3c7" path="res://assets/table-top.jpg" id="1_wtehr"]
 
 [node name="Table" type="Node2D"]
 scale = Vector2(2.13333, 1.80833)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Deck.cs" id="1_3prp7"]
 [ext_resource type="PackedScene" uid="uid://cq2bn4nr0ydr" path="res://scenes/card.tscn" id="2_io50r"]
-[ext_resource type="Texture2D" uid="uid://chdr3pbfq5ur7" path="res://images/SBS - 2D Poker Pack/Top-Down/Cards/Card_DeckA-88x140.png" id="2_v5dwf"]
+[ext_resource type="Texture2D" uid="uid://chdr3pbfq5ur7" path="res://assets/Cards/card-deck.png" id="2_v5dwf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pseg0"]
 atlas = ExtResource("2_v5dwf")
@@ -10,10 +10,7 @@ region = Rect2(88, 0, 88, 140)
 
 [node name="Deck" type="Node2D"]
 script = ExtResource("1_3prp7")
-deckSize = 16
-jokerCount = 6
-pictureCardCount = 4
-cardScene = ExtResource("2_io50r")
+_cardScene = ExtResource("2_io50r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

@@ -1,35 +1,26 @@
 using Godot;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Godot.Collections;
 
-public partial class Deck : Node2D
-{
-    [Export] public int deckSize;
-    [Export] public int jokerCount;
-    [Export] public int pictureCardCount;
+public partial class Deck : Node2D {
+    [Export] private int _deckSize = 16;
+    [Export] private int _jokerCount = 6;
+    [Export] private int _pictureCardCount = 4;
 
-	[Export] public PackedScene cardScene;
-    // Called when the node enters the scene tree for the first time.
-    List<cardData> cards = new List<cardData>();
-    public override void _Ready()
-    {
+	[Export] private PackedScene _cardScene;
+
+    private List<CardData> cards = new List<CardData>();
+
+    public override void _Ready() {
         int cardNum;
-
-        for (int i = 0; i < deckSize; i++)
-        {
-            cardData card;
-            if (jokerCount > 0)
-            {
+        for (int i = 0; i < _deckSize; i++) {
+            CardData card;
+            if (_jokerCount > 0) {
                 cardNum = 14;
-                jokerCount--;
+                _jokerCount--;
             }
-            else if (pictureCardCount > 0)
-            {
+            else if (_pictureCardCount > 0) {
                 int caseNum = (int)GD.RandRange(1, 5);
-                switch (caseNum)
-                {
+                switch (caseNum) {
                     case 1:
                         cardNum = 10;
                         break;
@@ -49,43 +40,34 @@ public partial class Deck : Node2D
                         cardNum = 2; 
                         break;
                 }
-                pictureCardCount--;
+                _pictureCardCount--;
             }
-            else
-            {
-                cardNum = (int)GD.RandRange(2, 9); 
+            else {
+                cardNum = GD.RandRange(2, 9); 
             }
 
             card.value = cardNum;
-            card.cardSuit = (cardData.suit)(int)GD.RandRange(0, 4);
+            card.cardSuit = (CardData.suit)(int)GD.RandRange(0, 4);
 
             cards.Add(card);
         }
 
-		Shuffle.Shuffler<cardData>(cards);
-
-        foreach (cardData c in cards)
-        {
-            GD.Print($"Card: {c.value} of {c.cardSuit}");
-        }
+		Util.Shuffler(cards);
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
+    public override void _Process(double delta) {
 
     }
 
-    public override void _Input(InputEvent @event)
-    {
+    public override void _Input(InputEvent @event) {
         Vector2 mousePos = GetLocalMousePosition();
 		if(mousePos.X > -44 && mousePos.X < 44){
 			if(mousePos.Y > -70 && mousePos.Y < 70){
 				if(@event is InputEventMouseButton mouseButton){
 					if(mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed()){
-						card crd = cardScene.Instantiate<card>();
-						cardData c = cards[0];
-						crd.cardInfo = c;
+						Card crd = _cardScene.Instantiate<Card>();
+						CardData c = cards[0];
+						crd.cardData = c;
 						AddChild(crd);
 						GetViewport().SetInputAsHandled();
 					}
@@ -95,10 +77,5 @@ public partial class Deck : Node2D
     }
 }
 
-public struct cardData
-{
-    public enum suit { Spades, Hearts, Diamonds, Clubs };
-    public int value;
-    public suit cardSuit;
-}
+
 
