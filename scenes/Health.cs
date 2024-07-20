@@ -2,10 +2,9 @@ using Godot;
 using System;
 
 public partial class Health : Node2D {
-
 	[Export] private int MaxHealth = 6;
 	[Export] private int CurrentHealth = 6;
-	[Export] private PackedScene heart;
+	[Export] private Texture2D heartTexture;
 
 	public override void _Ready(){
 		UpdateHealthDisplay();
@@ -34,47 +33,33 @@ public partial class Health : Node2D {
 		}
 		
 		// Add hearts according to MaxHealth
-		for (int i = 0; i < MaxHealth; i++){
-			Sprite2D currentHeart = heart.Instantiate<Sprite2D>();
+		for (int i = 0; i < MaxHealth/2; i++){
+			Sprite2D currentHeart = new Sprite2D();
+			SetHeartTexture(currentHeart, 0);
 			AddChild(currentHeart);
-			currentHeart.Position = new Vector2(i * 210, 0);  // Adjust the X position as needed
+			currentHeart.Position = new Vector2(i * 210, 0);
 		}
 		
 		// Set hearts to be full, half, or empty
-		for (int i = 0; i < MaxHealth; i++){
-			Sprite2D currentHeart = GetChild<Sprite2D>(i);
-			if (CurrentHealth >= i + 2){
-				// Full heart
-				SetHeartTexture(currentHeart, 0); // Adjust UV coordinates or regions accordingly
-			}
-			else if (CurrentHealth == i + 1){
-				// Half heart
-				SetHeartTexture(currentHeart, 1); // Adjust UV coordinates or regions accordingly
-			}
-			else {
-				// Empty heart
-				SetHeartTexture(currentHeart, 2); // Adjust UV coordinates or regions accordingly
-			}
+		int healthTaken = MaxHealth - CurrentHealth;
+		int heartIndex = -1;
+		for (int i = 0; i < (healthTaken % 2 == 0 ? healthTaken/2 : (healthTaken-1)/2); i++){
+			heartIndex = i;
+			Sprite2D sprite = GetChild<Sprite2D>(i);
+			SetHeartTexture(sprite, 2);
+		}
+
+		if (healthTaken % 2 != 0){
+			Sprite2D sprite = GetChild<Sprite2D>(heartIndex+1);
+			SetHeartTexture(sprite, 1);
 		}
 	}
 
 	private void SetHeartTexture(Sprite2D heartSprite, int heartState){
-		AtlasTexture atlasTexture = (AtlasTexture)heartSprite.Texture;
-
-		// Assuming regions are defined in your atlas
-		switch (heartState){
-			case 0:  // Full heart
-				atlasTexture.Region = new Rect2(0, 0, 190, 270);  // Adjust UV coordinates or regions
-				break;
-			case 1:  // Half heart
-				atlasTexture.Region = new Rect2(190, 0, 190, 270);  // Adjust UV coordinates or regions
-				break;
-			case 2:  // Empty heart
-				atlasTexture.Region = new Rect2(380, 0, 190, 270);  // Adjust UV coordinates or regions
-				break;
-			default:
-				break;
-		}
+		AtlasTexture atlasTexture = new AtlasTexture(){ 
+			Atlas = heartTexture,
+			Region = new Rect2(190 * heartState, 0, 190, 270)
+		};
 
 		heartSprite.Texture = atlasTexture;
 	}
