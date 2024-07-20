@@ -11,6 +11,8 @@ public partial class Deck : Node2D {
 
 	[Export] private PackedScene _cardScene;
 
+    public Card card;
+
     public List<CardData> cards = new List<CardData>();
     public static Deck singleton;
 
@@ -71,7 +73,7 @@ public partial class Deck : Node2D {
         Rect2 rect = sprite.GetRect();
         if(@event is InputEventMouseButton mouseButton && rect.HasPoint(mousePos)){
             if(mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed()){
-                Card card = DrawCard();
+                DrawCard();
                 EmitSignal(SignalName.CardDrawn);
 			}
 		}
@@ -99,6 +101,7 @@ public partial class Deck : Node2D {
             GD.Print("Timeout");
             card.flipCard();
         };
+        singleton.card = card;
         return card;
     }
 

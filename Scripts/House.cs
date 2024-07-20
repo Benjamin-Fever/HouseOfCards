@@ -12,7 +12,7 @@ public partial class House : Node2D
 		setTexture(Main.CardCounter);
 	}
 
-	private void setTexture(int cardCount){
+	public void setTexture(int cardCount){
 		int y = 360;
 		int x = 390;
 		if(cardCount < maxCards){

@@ -56,24 +56,33 @@ public partial class AI : Node2D
 			int decidingWeight = (100/deckSize * powerCardCount) * 3 - (100/deckSize * blankCount) - (100/deckSize * jokerCount) * 2;
 
 			if(decidingWeight < 50){
+				//make player draw
 				Card card = Deck.DrawCard();
-				card.GlobalPosition += new Vector2(0, -400);
+				card.GlobalPosition += new Vector2(0, 400);
+				Deck.singleton.card = card;
+				Main.singleton.OnPlayerCardPlayed();
 			}
 			else if(decidingWeight > 80){
+				//ai draws
 				Card card = Deck.DrawCard();
 			} 
 			else{
 				if(decidingWeight + (100/deckSize * blankCount) > 60){
+					//ai draws
 					Card card = Deck.DrawCard();
 				}
 				else{
-					Card card = Deck.DrawCard();
-					card.GlobalPosition += new Vector2(0, -400);
+					//make player draw
+				Card card = Deck.DrawCard();
+				card.GlobalPosition += new Vector2(0, 400);
+				Deck.singleton.card = card;
+				Main.singleton.OnPlayerCardPlayed();
 					
 				}
 			}	
 		}
 		else{
+			//ai draws
 			Card card = Deck.DrawCard();
 		}
 	}
