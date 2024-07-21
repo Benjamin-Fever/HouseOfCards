@@ -15,6 +15,9 @@ public partial class House : Node2D {
 
 	public void setTexture(int cardCount){
 		for (int i = 0; i < cardCount; i++) {
+			if(i >= _cards.Count){
+				break;
+			}
 			_cards[i].Visible = true;
 		}
 	}

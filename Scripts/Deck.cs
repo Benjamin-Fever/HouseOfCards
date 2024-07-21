@@ -18,6 +18,10 @@ public partial class Deck : Node2D {
 
     public override void _Ready() {
         singleton = this;
+        makeDeck();
+    }
+
+    public void makeDeck(){
         int cardNum;
         for (int i = 0; i < _deckSize; i++) {
             CardData card;
@@ -60,10 +64,6 @@ public partial class Deck : Node2D {
         }
 
 		Util.Shuffler(cards);
-    }
-
-    public override void _Process(double delta) {
-
     }
 
     public override void _Input(InputEvent @event) {
@@ -109,6 +109,22 @@ public partial class Deck : Node2D {
             revealedCards.AddChild(card);
             card.Position += new Vector2(0, 40 * i);
         }
+    }
+
+    public void reshuffle(){
+        if(singleton.cards.Count == 0){
+            makeDeck();
+            Control reshuffle = GetNode<Control>("../ReshuffleText");
+            reshuffle.Visible = true;
+            Timer reshuffleTimer = GetNode<Timer>("../ReshuffleTimer");
+            reshuffleTimer.Start();
+        }
+    }
+
+    public void reshuffleComplete(){
+        Control reshuffle = GetNode<Control>("../ReshuffleText");
+        reshuffle.Visible = false;
+        Main.singleton.deckTimerStart();
     }
 }
 

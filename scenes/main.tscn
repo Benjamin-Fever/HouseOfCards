@@ -1,18 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3qn1j3u40qi7"]
+[gd_scene load_steps=15 format=3 uid="uid://b3qn1j3u40qi7"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_kuexv"]
 [ext_resource type="PackedScene" uid="uid://d2w0nc71jm3a2" path="res://scenes/table.tscn" id="1_q5qhk"]
 [ext_resource type="PackedScene" uid="uid://c8sww0m7b1drd" path="res://scenes/deckReveal.tscn" id="2_3bdv1"]
 [ext_resource type="PackedScene" uid="uid://n434b38v67xs" path="res://scenes/Deck.tscn" id="2_ve48p"]
 [ext_resource type="Texture2D" uid="uid://ddg6md3qnduxl" path="res://assets/Cards/spadeCards.png" id="3_lmplq"]
-[ext_resource type="PackedScene" uid="uid://qg15u6lxc8c5" path="res://scenes/popup.tscn" id="4_2xf01"]
+[ext_resource type="PackedScene" path="res://scenes/popup.tscn" id="4_2xf01"]
 [ext_resource type="Texture2D" uid="uid://xj2qjh1ei5kv" path="res://assets/Cards/heartCards.png" id="4_wjnnh"]
 [ext_resource type="Texture2D" uid="uid://lhgtaekslihh" path="res://assets/Cards/diamondCards.png" id="5_7lx5p"]
 [ext_resource type="PackedScene" uid="uid://bqy8hnhqc7ohc" path="res://scenes/health.tscn" id="5_346ug"]
 [ext_resource type="Texture2D" uid="uid://d1gswd6c1lwym" path="res://assets/Cards/clubCards.png" id="6_4hwp7"]
 [ext_resource type="PackedScene" uid="uid://lu4r4iag847k" path="res://scenes/House.tscn" id="11_xlfpf"]
 [ext_resource type="Script" path="res://Scripts/AI.cs" id="12_fnf0u"]
-[ext_resource type="PackedScene" path="res://scenes/Tutorial.tscn" id="13_bka4u"]
+[ext_resource type="PackedScene" uid="uid://7w78j81l8lm6" path="res://scenes/Tutorial.tscn" id="13_bka4u"]
+[ext_resource type="PackedScene" uid="uid://baivowtxrpjk2" path="res://scenes/ReshuffleText.tscn" id="14_mam76"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kuexv")
@@ -51,6 +52,7 @@ position = Vector2(292, -218)
 
 [node name="DeckTimer" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
 
 [node name="Tutorial" parent="." instance=ExtResource("13_bka4u")]
 offset_left = -517.0
@@ -60,7 +62,19 @@ offset_bottom = -182.0
 
 [node name="TutorialTimer" type="Timer" parent="."]
 
+[node name="ReshuffleTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="ReshuffleText" parent="." instance=ExtResource("14_mam76")]
+visible = false
+offset_left = -65.0
+offset_top = -31.0
+offset_right = -11.0
+offset_bottom = -31.0
+
 [connection signal="CardDrawn" from="Deck" to="." method="OnPlayerCardDrawn"]
 [connection signal="ActionPassed" from="CanvasLayer/Popup" to="AI" method="OnAiCardDrawn"]
 [connection signal="ActionPlayed" from="CanvasLayer/Popup" to="." method="OnPlayerCardPlayed"]
 [connection signal="timeout" from="DeckTimer" to="." method="deckTimerEnd"]
+[connection signal="timeout" from="ReshuffleTimer" to="Deck" method="reshuffleComplete"]

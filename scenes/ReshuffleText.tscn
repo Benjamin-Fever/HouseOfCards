@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://baivowtxrpjk2"]
+
+[ext_resource type="Script" path="res://Scripts/ReshuffleText.cs" id="1_aq4pf"]
+
+[node name="ReshuffleText" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_aq4pf")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_right = 140.0
+offset_bottom = 67.0
+text = "    No cards left
+Reshuffling Deck"

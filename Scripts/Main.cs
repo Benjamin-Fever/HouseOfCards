@@ -39,25 +39,22 @@ public partial class Main : Node {
 	public void deckTimerStart(){
 		List<CardData> cards = Deck.singleton.cards;
 		Util.Shuffler(cards);
+		timer.WaitTime = 5;
 		timer.Start();
 		reveal.Visible = true;
 		AIHealth.Visible = false;
 		Health.Visible = false;
 		deck.Visible = false;
 		house.Visible = false;
-
+		GD.Print("Got here");
 	}
 
 	public void deckTimerEnd(){
-		deckReveal reveal = GetNode<deckReveal>("CanvasLayer/DeckReveal");
+		GD.Print("End time");
 		reveal.Visible = false;
-		Health AIHealth = GetNode<Health>("AI/HealthAI");
 		AIHealth.Visible = true;
-		Health Health = GetNode<Health>("Health");
 		Health.Visible = true;
-		Deck deck = GetNode<Deck>("Deck");
 		deck.Visible = true;
-		House house = GetNode<House>("House");
 		house.Visible = true;
 		List<CardData> cards = Deck.singleton.cards;
 		Util.Shuffler(cards);
@@ -91,6 +88,7 @@ public partial class Main : Node {
 			AI ai = GetNode<AI>("AI");
 			ai.OnPlayerDrawsJoker();
 		}
+		deck.reshuffle();
 	}
 
 }

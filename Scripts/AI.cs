@@ -136,7 +136,7 @@ public partial class AI : Node2D
 			Main.currentTurn = Main.Turn.PLAYER;
 			return;
 		}
-
+		Deck.singleton.reshuffle();
 		turn();
 	}
 }
