@@ -79,7 +79,7 @@ public partial class AI : Node2D
 	public void turn(){	
 		Victory victory = GetNode<Victory>("../Victory");
 		if(victory.Visible){return;}
-		if(GetNode<Control>("GameOver").Visible){return;}
+		if(GetNode<Control>("../GameOver").Visible){return;}
 
 		if(GD.RandRange(0,100) < difficulty){
 			int decidingWeight = (100/(deckSize +1) * powerCardCount) * 2 - (100/(deckSize +1)* blankCount) - (100/(deckSize + 1) * jokerCount) * 3;
