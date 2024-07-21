@@ -169,6 +169,9 @@ public partial class AI : Node2D
 				Health health = GetNode<Health>("HealthAI");
 				health.AddHealth(1);
 			}
+			if(card.cardData.value == 13){
+				Main.doubleDamage = true;
+			}
 		}
 		else{
 			Health health = GetNode<Health>("HealthAI");

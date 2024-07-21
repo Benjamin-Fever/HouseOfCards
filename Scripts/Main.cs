@@ -80,33 +80,37 @@ public partial class Main : Node {
 		else if(card.cardData.value == 1 || (card.cardData.value > 10 && card.cardData.value < 14)){
 			if (card.cardData.value == 1){
 				// Show 5 cards
-				Deck.RevealCard(5);
-				Timer timer = new Timer(){
-					Autostart = true,
-					WaitTime = 2
-				};
-				currentTurn = Turn.OP;
-				AddChild(timer);
-				timer.Timeout += () => {
-					currentTurn = Turn.PLAYER;
-					Deck.singleton.GetNode("RevealedCards").QueueFree();
-					timer.QueueFree();
-				};
+				if(Deck.singleton.cards.Count > 4){
+					Deck.RevealCard(5);
+					Timer timer = new Timer(){
+						Autostart = true,
+						WaitTime = 2
+					};
+					currentTurn = Turn.OP;
+					AddChild(timer);
+					timer.Timeout += () => {
+						currentTurn = Turn.PLAYER;
+						Deck.singleton.GetNode("RevealedCards").QueueFree();
+						timer.QueueFree();
+					};
+				}
 			}
 			else if (card.cardData.value == 11){
 				// Show 1 card
-				Deck.RevealCard();
-				currentTurn = Turn.OP;
-				Timer timer = new Timer(){
-					Autostart = true,
-					WaitTime = 2
-				};
-				AddChild(timer);
-				timer.Timeout += () => {
-					currentTurn = Turn.PLAYER;
-					Deck.singleton.GetNode("RevealedCards").Free();
-					timer.QueueFree();
-				};
+				if(Deck.singleton.cards.Count > 0){
+					Deck.RevealCard();
+					currentTurn = Turn.OP;
+					Timer timer = new Timer(){
+						Autostart = true,
+						WaitTime = 2
+					};
+					AddChild(timer);
+					timer.Timeout += () => {
+						currentTurn = Turn.PLAYER;
+						Deck.singleton.GetNode("RevealedCards").Free();
+						timer.QueueFree();
+					};
+				}
 			}
 			else if (card.cardData.value == 12){
 				Health.AddHealth(1);
