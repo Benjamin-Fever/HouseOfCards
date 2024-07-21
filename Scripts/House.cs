@@ -15,8 +15,11 @@ public partial class House : Node2D {
 
 	public void setTexture(int cardCount){
 		for (int i = 0; i < cardCount; i++) {
-			if(i >= _cards.Count){
-				break;
+			if(i >= _cards.Count -1){
+				Victory victory = GetNode<Victory>("../Victory");
+				victory.houseWin = true;
+				victory.displayVictoryBox();
+				victory.Visible = true;
 			}
 			_cards[i].Visible = true;
 		}

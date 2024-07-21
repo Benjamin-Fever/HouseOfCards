@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7w78j81l8lm6"]
+[gd_scene load_steps=3 format=3 uid="uid://7w78j81l8lm6"]
 
 [ext_resource type="Script" path="res://Scripts/Tutorial.cs" id="1_t0dkw"]
+[ext_resource type="Texture2D" uid="uid://b65mdk338ec0u" path="res://assets/panel-background.png" id="2_brkec"]
 
 [node name="Tutorial" type="Control"]
 layout_mode = 3
@@ -11,10 +12,48 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t0dkw")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -574.0
+offset_top = -324.0
+offset_right = 481.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -327.0
+offset_right = 485.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_brkec")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="TextEdit" type="Label" parent="."]
 layout_mode = 0
-offset_right = 1040.0
-offset_bottom = 406.0
+offset_left = 12.0
+offset_top = 5.0
+offset_right = 1052.0
+offset_bottom = 411.0
 text = "Tutorial:
 This is a game of skill and luck. 
 You will draw cards, either to yourself or your opponent. If the card is a Joker, the receiving player loses a life and forfeits their turn. 

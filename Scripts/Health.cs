@@ -3,7 +3,7 @@ using System;
 
 public partial class Health : Node2D {
 	[Export] private int MaxHealth = 6;
-	[Export] private int CurrentHealth = 6;
+	[Export] public int CurrentHealth = 6;
 	[Export] private Texture2D heartTexture;
 
 	public override void _Ready(){

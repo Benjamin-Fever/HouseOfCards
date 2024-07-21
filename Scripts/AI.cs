@@ -77,6 +77,9 @@ public partial class AI : Node2D
 	}
 
 	public void turn(){	
+		Victory victory = GetNode<Victory>("../Victory");
+		if(victory.Visible){return;}
+
 		if(GD.RandRange(0,100) < difficulty){
 			int decidingWeight = (100/(deckSize +1) * powerCardCount) * 2 - (100/(deckSize +1)* blankCount) - (100/(deckSize + 1) * jokerCount) * 3;
 
@@ -170,6 +173,12 @@ public partial class AI : Node2D
 		else{
 			Health health = GetNode<Health>("HealthAI");
 			health.RemoveHealth(1 + (Main.doubleDamage ? 1 : 0));
+			if(health.CurrentHealth <= 0){
+				Victory victory = GetNode<Victory>("../Victory");
+				victory.houseWin = false;
+				victory.displayVictoryBox();
+				victory.Visible = true;
+			}
 			Main.doubleDamage = false;
 			Main.currentTurn = Main.Turn.PLAYER;
 			return;

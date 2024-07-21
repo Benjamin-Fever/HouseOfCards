@@ -76,7 +76,10 @@ public partial class Deck : Node2D {
         if(reshuffle.Visible){return;}
         Tutorial tutorial = GetNode<Tutorial>("../Tutorial");
         if(tutorial.Visible){return;}
+        Victory victory = GetNode<Victory>("../Victory");
+        if(victory.Visible){return;}
         Vector2 mousePos = GetLocalMousePosition();
+
         
         Rect2 rect = sprite.GetRect();
         if(@event is InputEventMouseButton mouseButton && rect.HasPoint(mousePos)){

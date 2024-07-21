@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://drmuow2js2056"]
+
+[ext_resource type="Script" path="res://Scripts/Victory.cs" id="1_r11f8"]
+
+[sub_resource type="Theme" id="Theme_05yxd"]
+default_font_size = 100
+
+[sub_resource type="Theme" id="Theme_v3hwx"]
+default_font_size = 70
+
+[sub_resource type="Theme" id="Theme_rap0p"]
+default_font_size = 70
+
+[node name="Victory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r11f8")
+
+[node name="TextEdit" type="Label" parent="."]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 5.0
+offset_right = 779.0
+offset_bottom = 148.0
+theme = SubResource("Theme_05yxd")
+text = "VICTORY"
+
+[node name="Health" type="Label" parent="."]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 152.0
+offset_right = 853.0
+offset_bottom = 269.0
+theme = SubResource("Theme_v3hwx")
+text = "By Enemy Defeat"
+
+[node name="House" type="Label" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 154.0
+offset_right = 1108.0
+offset_bottom = 270.0
+theme = SubResource("Theme_rap0p")
+text = "By Building The House Of Cards"
