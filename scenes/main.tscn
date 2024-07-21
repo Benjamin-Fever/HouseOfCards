@@ -23,9 +23,6 @@ script = ExtResource("1_kuexv")
 [node name="Table" parent="." instance=ExtResource("1_q5qhk")]
 
 [node name="Deck" parent="." instance=ExtResource("2_ve48p")]
-_deckSize = 2
-_jokerCount = 0
-_pictureCardCount = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
