@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3atx8q8aarpf"]
+
+[sub_resource type="Theme" id="Theme_eo6tp"]
+default_font_size = 100
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextEdit" type="Label" parent="."]
+offset_left = 286.0
+offset_top = 1.0
+offset_right = 860.0
+offset_bottom = 144.0
+theme = SubResource("Theme_eo6tp")
+text = "GAME OVER"

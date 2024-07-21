@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3qn1j3u40qi7"]
+[gd_scene load_steps=17 format=3 uid="uid://b3qn1j3u40qi7"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_kuexv"]
 [ext_resource type="PackedScene" uid="uid://d2w0nc71jm3a2" path="res://scenes/table.tscn" id="1_q5qhk"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://7w78j81l8lm6" path="res://scenes/Tutorial.tscn" id="13_bka4u"]
 [ext_resource type="PackedScene" uid="uid://baivowtxrpjk2" path="res://scenes/ReshuffleText.tscn" id="14_mam76"]
 [ext_resource type="PackedScene" uid="uid://drmuow2js2056" path="res://scenes/Victory.tscn" id="15_1al67"]
+[ext_resource type="PackedScene" uid="uid://d3atx8q8aarpf" path="res://scenes/GameOver.tscn" id="16_mjej7"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kuexv")
@@ -22,8 +23,9 @@ script = ExtResource("1_kuexv")
 [node name="Table" parent="." instance=ExtResource("1_q5qhk")]
 
 [node name="Deck" parent="." instance=ExtResource("2_ve48p")]
-_deckSize = 24
-_pictureCardCount = 8
+_deckSize = 2
+_jokerCount = 0
+_pictureCardCount = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -56,6 +58,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Tutorial" parent="." instance=ExtResource("13_bka4u")]
+visible = false
 offset_left = -517.0
 offset_top = -182.0
 offset_right = -517.0
@@ -67,19 +70,26 @@ offset_bottom = -182.0
 wait_time = 3.0
 one_shot = true
 
-[node name="ReshuffleText" parent="." instance=ExtResource("14_mam76")]
-visible = false
-offset_left = -65.0
-offset_top = -31.0
-offset_right = -11.0
-offset_bottom = -31.0
-
 [node name="Victory" parent="." instance=ExtResource("15_1al67")]
 visible = false
 offset_left = -568.0
 offset_top = -189.0
 offset_right = -568.0
 offset_bottom = -189.0
+
+[node name="ReshuffleText" parent="." instance=ExtResource("14_mam76")]
+visible = false
+offset_left = -65.0
+offset_top = -27.0
+offset_right = -65.0
+offset_bottom = -27.0
+
+[node name="GameOver" parent="." instance=ExtResource("16_mjej7")]
+visible = false
+offset_left = -589.0
+offset_top = -73.0
+offset_right = -589.0
+offset_bottom = -73.0
 
 [connection signal="CardDrawn" from="Deck" to="." method="OnPlayerCardDrawn"]
 [connection signal="ActionPassed" from="CanvasLayer/Popup" to="AI" method="OnAiCardDrawn"]

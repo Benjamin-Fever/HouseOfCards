@@ -122,6 +122,9 @@ public partial class Main : Node {
 		else{
 			Health health = GetNode<Health>("Health");
 			health.RemoveHealth(1 + (doubleDamage ? 1 : 0));
+			if(health.CurrentHealth <= 0){
+				GetNode<Control>("GameOver").Visible = true;
+			}
 			doubleDamage = false;
 			currentTurn = Turn.OP;
 			AI ai = GetNode<AI>("AI");
