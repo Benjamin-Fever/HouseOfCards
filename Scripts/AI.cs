@@ -4,7 +4,6 @@ using System;
 public partial class AI : Node2D
 {
 	[Export] private int difficulty = 50;
-	[Export] private Timer timer;
 
 	private int jokerCount = 0;
 	private int powerCardCount = 0;
@@ -21,9 +20,17 @@ public partial class AI : Node2D
 		popup.Visible = false;
 		Card card = Deck.singleton.card;
 		card.GlobalPosition += new Vector2(0, -400);
-		card.flipCard();
-		checkDeck();
-		checkCard();
+		Timer timer = new Timer(){
+			WaitTime = 1,
+			OneShot = true,
+			Autostart = true
+		};
+		timer.Timeout += () => {
+			checkCard();
+			checkDeck();
+			timer.QueueFree();
+		};
+		AddChild(timer);
 	}
 
 	public void OnPlayerDrawsJoker(){
@@ -75,7 +82,7 @@ public partial class AI : Node2D
 
 			if(decidingWeight < 50){
 				Deck.singleton.reshuffle();
-				GD.Print("plyaer turn 1");
+				GD.Print("Forced Player Turn");
 				//make player draw
 				Card card = Deck.DrawCard();
 				card.GlobalPosition = new Vector2(0, 200);
@@ -85,22 +92,40 @@ public partial class AI : Node2D
 			}
 			else if(decidingWeight > 80){
 				Deck.singleton.reshuffle();
-				GD.Print("ai turn");
+				GD.Print("AI Played Card");
 				//ai draws
 				Card card = Deck.DrawCard();
-				checkCard();
+				Timer timer = new Timer(){
+					WaitTime = 1,
+					OneShot = true,
+					Autostart = true
+				};
+				timer.Timeout += () => {
+					checkCard();
+					timer.QueueFree();
+				};
+				AddChild(timer);
 			} 
 			else{
 				if(decidingWeight + (100/deckSize * blankCount) > 60){
 					Deck.singleton.reshuffle();
-					GD.Print("ai turn");
+					GD.Print("AI Played Card");
 					//ai draws
 					Card card = Deck.DrawCard();
-					checkCard();
+					Timer timer = new Timer(){
+						WaitTime = 1,
+						OneShot = true,
+						Autostart = true
+					};
+					timer.Timeout += () => {
+						checkCard();
+						timer.QueueFree();
+					};
+			AddChild(timer);
 				}
 				else{
 					Deck.singleton.reshuffle();
-					GD.Print("plyaer turn 2");
+					GD.Print("Forced Player Turn");
 					//make player draw
 					Card card = Deck.DrawCard();
 					card.GlobalPosition += new Vector2(0, 400);
@@ -115,20 +140,26 @@ public partial class AI : Node2D
 			GD.Print("ai turn");
 			//ai draws
 			Card card = Deck.DrawCard();
-			checkCard();
+			Timer timer = new Timer(){
+				WaitTime = 1,
+				OneShot = true,
+				Autostart = true
+			};
+			timer.Timeout += () => {
+				checkCard();
+				timer.QueueFree();
+			};
+			AddChild(timer);
+			
 		}
 	}
 
 	public void checkCard(){
-		GD.Print("checking card");
 		Control popup = GetNode<Control>("../CanvasLayer/Popup");
 		popup.Visible = false;
 		Card card = Deck.singleton.card;
 		card.flipCard();
 		if(card.cardData.value > 1 && card.cardData.value < 11){
-			//CardCounter++;
-			//House house = GetNode<House>("House");
-			//house.setTexture(CardCounter);
 		}
 		else if(card.cardData.value == 1 || (card.cardData.value > 10 && card.cardData.value < 14)){
 			if (card.cardData.value == 12){
@@ -137,14 +168,22 @@ public partial class AI : Node2D
 			}
 		}
 		else{
-			GD.Print("AI got a joker");
 			Health health = GetNode<Health>("HealthAI");
 			health.RemoveHealth(1 + (Main.doubleDamage ? 1 : 0));
 			Main.doubleDamage = false;
-			// TODO: change turns to player
 			Main.currentTurn = Main.Turn.PLAYER;
 			return;
 		}
-		turn();
+		Timer timer = new Timer(){
+			WaitTime = 1,
+			OneShot = true,
+			Autostart = true
+		};
+		timer.Timeout += () => {
+			turn();
+			timer.QueueFree();
+		};
+		AddChild(timer);
+		
 	}
 }

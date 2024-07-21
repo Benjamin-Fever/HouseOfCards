@@ -14,7 +14,7 @@ public partial class Card : Node2D {
 	public CardData cardData;
 
     public override void _Ready() {
-        GD.Print(cardData);
+        
     }
 
     public void flipCard(){

@@ -47,11 +47,9 @@ public partial class Main : Node {
 		Health.Visible = false;
 		deck.Visible = false;
 		house.Visible = false;
-		GD.Print("Got here");
 	}
 
 	public void deckTimerEnd(){
-		GD.Print("End time");
 		reveal.Visible = false;
 		AIHealth.Visible = true;
 		Health.Visible = true;
