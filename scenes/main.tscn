@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b3qn1j3u40qi7"]
+[gd_scene load_steps=18 format=3 uid="uid://b3qn1j3u40qi7"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_kuexv"]
 [ext_resource type="PackedScene" uid="uid://d2w0nc71jm3a2" path="res://scenes/table.tscn" id="1_q5qhk"]
@@ -12,10 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://d1gswd6c1lwym" path="res://assets/Cards/clubCards.png" id="6_4hwp7"]
 [ext_resource type="PackedScene" uid="uid://lu4r4iag847k" path="res://scenes/House.tscn" id="11_xlfpf"]
 [ext_resource type="Script" path="res://Scripts/AI.cs" id="12_fnf0u"]
-[ext_resource type="PackedScene" uid="uid://cypx3cs8ad7gc" path="res://scenes/Tutorial.tscn" id="13_bka4u"]
-[ext_resource type="PackedScene" path="res://scenes/ReshuffleText.tscn" id="14_mam76"]
-[ext_resource type="PackedScene" path="res://scenes/Victory.tscn" id="15_1al67"]
-[ext_resource type="PackedScene" path="res://scenes/GameOver.tscn" id="16_mjej7"]
+[ext_resource type="PackedScene" uid="uid://7w78j81l8lm6" path="res://scenes/Tutorial.tscn" id="13_bka4u"]
+[ext_resource type="PackedScene" uid="uid://baivowtxrpjk2" path="res://scenes/ReshuffleText.tscn" id="14_mam76"]
+[ext_resource type="PackedScene" uid="uid://drmuow2js2056" path="res://scenes/Victory.tscn" id="15_1al67"]
+[ext_resource type="PackedScene" uid="uid://d3atx8q8aarpf" path="res://scenes/GameOver.tscn" id="16_mjej7"]
+[ext_resource type="AudioStream" uid="uid://cbfltvemaj4f8" path="res://assets/Audio/KiwiJam2024.ogg" id="17_xqlcx"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kuexv")
@@ -87,6 +88,10 @@ offset_left = -589.0
 offset_top = -73.0
 offset_right = -589.0
 offset_bottom = -73.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_xqlcx")
+autoplay = true
 
 [connection signal="CardDrawn" from="Deck" to="." method="OnPlayerCardDrawn"]
 [connection signal="ActionPassed" from="CanvasLayer/Popup" to="AI" method="OnAiCardDrawn"]
