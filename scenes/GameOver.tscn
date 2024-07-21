@@ -8,6 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="TextEdit" type="Label" parent="."]
+layout_mode = 0
 offset_left = 286.0
 offset_top = 1.0
 offset_right = 860.0

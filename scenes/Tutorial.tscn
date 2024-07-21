@@ -57,7 +57,8 @@ offset_bottom = 411.0
 text = "Tutorial:
 This is a game of skill and luck. 
 You will draw cards, either to yourself or your opponent. If the card is a Joker, the receiving player loses a life and forfeits their turn. 
-If the card is a picture card or ace, they will have special abilities, and you can….. These will be explained when you receive them. 
+If the card is a picture card or ace, they will have special abilities. The Jack lets you see the next card on the deck.
+The Queen heals one health. The King makes the next joker do double damage (does not stack), and the ace reveals the top 5 cards.
 Lastly, if you get any card from 2 to 9, you will begin to build your house of cards.
 
 Winning:
