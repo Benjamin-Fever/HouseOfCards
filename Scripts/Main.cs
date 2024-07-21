@@ -3,6 +3,15 @@ using System;
 using System.Collections.Generic;
 
 public partial class Main : Node {
+
+	Timer timer;
+	deckReveal reveal;
+	Health AIHealth;
+	Health Health;
+	Deck deck;
+	House house;
+	Tutorial tutorial;
+
 	public enum Turn {
 		PLAYER,
 		OP
@@ -13,24 +22,30 @@ public partial class Main : Node {
 
 	public override void _Ready() {
 		singleton = this;
-		deckTimerStart();
+		getNodes();
+		tutorial.Visible = true;
+	}
+
+	public void getNodes(){
+		timer = GetNode<Timer>("DeckTimer");
+		reveal = GetNode<deckReveal>("CanvasLayer/DeckReveal");
+		AIHealth = GetNode<Health>("AI/HealthAI");
+		Health = GetNode<Health>("Health");
+		deck = GetNode<Deck>("Deck");
+		house = GetNode<House>("House");
+		tutorial = GetNode<Tutorial>("Tutorial");
 	}
 
 	public void deckTimerStart(){
 		List<CardData> cards = Deck.singleton.cards;
 		Util.Shuffler(cards);
-		Timer timer = GetNode<Timer>("DeckTimer");
 		timer.Start();
-		deckReveal reveal = GetNode<deckReveal>("CanvasLayer/DeckReveal");
 		reveal.Visible = true;
-		Health AIHealth = GetNode<Health>("AI/HealthAI");
 		AIHealth.Visible = false;
-		Health Health = GetNode<Health>("Health");
 		Health.Visible = false;
-		Deck deck = GetNode<Deck>("Deck");
 		deck.Visible = false;
-		House house = GetNode<House>("House");
 		house.Visible = false;
+
 	}
 
 	public void deckTimerEnd(){

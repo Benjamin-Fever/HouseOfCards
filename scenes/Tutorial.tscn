@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://7w78j81l8lm6"]
+
+[ext_resource type="Script" path="res://Scripts/Tutorial.cs" id="1_t0dkw"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t0dkw")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_right = 1040.0
+offset_bottom = 406.0
+text = "Tutorial:
+This is a game of skill and luck. 
+You will draw cards, either to yourself or your opponent. If the card is a Joker, the receiving player loses a life and forfeits their turn. 
+If the card is a picture card or ace, they will have special abilities, and you can….. These will be explained when you receive them. 
+Lastly, if you get any card from 2 to 9, you will begin to build your house of cards.
+
+Winning:
+Whichever player's health reaches 0 first will lose.
+However, if you are able to build your house of cards before either player's health reaches 0, you will get a true victory.
+
+You will have 15 seconds to look at the deck and best memorise what is in it. 
+Make your best judgment on what you should do on your turn based on what has already been drawn, and good luck!
+
+Click ENTER to continue"
