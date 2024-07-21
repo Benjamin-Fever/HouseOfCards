@@ -1,16 +1,117 @@
-[gd_scene load_steps=4 format=3 uid="uid://lu4r4iag847k"]
+[gd_scene load_steps=5 format=3 uid="uid://lu4r4iag847k"]
 
 [ext_resource type="Script" path="res://Scripts/House.cs" id="1_6qgrx"]
-[ext_resource type="Texture2D" uid="uid://du0uixpd4ftp7" path="res://assets/cardHouse.png" id="2_kb7of"]
+[ext_resource type="Texture2D" uid="uid://c8kiiber08vgg" path="res://assets/Cards/card-house.png" id="3_sbna6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p80l6"]
-atlas = ExtResource("2_kb7of")
-region = Rect2(0, -6, 394, 396)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e554"]
+atlas = ExtResource("3_sbna6")
+region = Rect2(379, 0, 379, 270)
 
-[node name="House" type="Node2D" node_paths=PackedStringArray("_house")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbqcv"]
+atlas = ExtResource("3_sbna6")
+region = Rect2(0, 0, 379, 270)
+
+[node name="House" type="Node2D" node_paths=PackedStringArray("_cards")]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_6qgrx")
-_house = NodePath("house")
-_houseT = ExtResource("2_kb7of")
+_cards = [NodePath("Pair/Sprite2D2"), NodePath("Pair/Sprite2D"), NodePath("Pair2/Sprite2D2"), NodePath("Pair2/Sprite2D"), NodePath("Pair3/Sprite2D2"), NodePath("Pair3/Sprite2D"), NodePath("Pair5/Sprite2D2"), NodePath("Pair5/Sprite2D"), NodePath("Pair6/Sprite2D2"), NodePath("Pair6/Sprite2D"), NodePath("Pair7/Sprite2D2"), NodePath("Pair7/Sprite2D"), NodePath("Pair8/Sprite2D2"), NodePath("Pair8/Sprite2D"), NodePath("Pair9/Sprite2D2"), NodePath("Pair9/Sprite2D"), NodePath("Pair10/Sprite2D2"), NodePath("Pair10/Sprite2D"), NodePath("Pair11/Sprite2D2"), NodePath("Pair11/Sprite2D")]
 
-[node name="house" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_p80l6")
+[node name="Pair" type="Node2D" parent="."]
+position = Vector2(334, 304)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair"]
+texture = SubResource("AtlasTexture_fbqcv")
+
+[node name="Pair2" type="Node2D" parent="."]
+position = Vector2(104, 304)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair2"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair2"]
+texture = SubResource("AtlasTexture_fbqcv")
+
+[node name="Pair3" type="Node2D" parent="."]
+position = Vector2(-126, 304)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair3"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair3"]
+texture = SubResource("AtlasTexture_fbqcv")
+
+[node name="Pair5" type="Node2D" parent="."]
+position = Vector2(-356, 304)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair5"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair5"]
+texture = SubResource("AtlasTexture_fbqcv")
+
+[node name="Pair6" type="Node2D" parent="."]
+position = Vector2(214, 36)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair6"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair6"]
+texture = SubResource("AtlasTexture_fbqcv")
+
+[node name="Pair7" type="Node2D" parent="."]
+position = Vector2(-16, 36)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair7"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair7"]
+texture = SubResource("AtlasTexture_fbqcv")
+
+[node name="Pair8" type="Node2D" parent="."]
+position = Vector2(-246, 36)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair8"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair8"]
+texture = SubResource("AtlasTexture_fbqcv")
+
+[node name="Pair9" type="Node2D" parent="."]
+position = Vector2(104, -232)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair9"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair9"]
+texture = SubResource("AtlasTexture_fbqcv")
+
+[node name="Pair10" type="Node2D" parent="."]
+position = Vector2(-126, -232)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair10"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair10"]
+texture = SubResource("AtlasTexture_fbqcv")
+
+[node name="Pair11" type="Node2D" parent="."]
+position = Vector2(-11, -500)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pair11"]
+position = Vector2(-5, 1)
+texture = SubResource("AtlasTexture_4e554")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pair11"]
+texture = SubResource("AtlasTexture_fbqcv")
