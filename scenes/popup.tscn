@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgq6k70nwp61t"]
+[gd_scene load_steps=11 format=3 uid="uid://qg15u6lxc8c5"]
 
 [ext_resource type="Script" path="res://Scripts/ActionPopup.cs" id="1_mhj82"]
 [ext_resource type="Texture2D" uid="uid://b65mdk338ec0u" path="res://assets/panel-background.png" id="2_lln4m"]

@@ -78,7 +78,7 @@ public partial class Deck : Node2D {
         if(tutorial.Visible){return;}
         Victory victory = GetNode<Victory>("../Victory");
         if(victory.Visible){return;}
-        if(GetNode<Control>("GameOver").Visible){return;}
+        if(GetNode<Control>("../GameOver").Visible){return;}
         Vector2 mousePos = GetLocalMousePosition();
 
         
