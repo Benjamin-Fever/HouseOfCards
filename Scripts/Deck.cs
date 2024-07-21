@@ -85,6 +85,7 @@ public partial class Deck : Node2D {
         Rect2 rect = sprite.GetRect();
         if(@event is InputEventMouseButton mouseButton && rect.HasPoint(mousePos)){
             if(mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed()){
+                Deck.singleton.reshuffle();
                 DrawCard();
                 EmitSignal(SignalName.CardDrawn);
 			}

@@ -71,6 +71,7 @@ public partial class Main : Node {
 		Control popup = GetNode<Control>("CanvasLayer/Popup");
 		popup.Visible = false;
 		Card card = Deck.singleton.card;
+		GD.Print(card.cardData.value);
 		card.flipCard();
 		if(card.cardData.value > 1 && card.cardData.value < 11){
 			CardCounter++;
@@ -119,7 +120,8 @@ public partial class Main : Node {
 				doubleDamage = true;
 			}
 		}
-		else{
+		else if (card.cardData.value == 14){
+			GD.Print("Player lost");
 			Health health = GetNode<Health>("Health");
 			health.RemoveHealth(1 + (doubleDamage ? 1 : 0));
 			if(health.CurrentHealth <= 0){

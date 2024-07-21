@@ -37,8 +37,19 @@ public partial class AI : Node2D
 		Main.currentTurn = Main.Turn.OP;
 		Control popup = GetNode<Control>("../CanvasLayer/Popup");
 		popup.Visible = false;
-		checkDeck();
-		turn();
+
+		Timer timer = new Timer(){
+			WaitTime = 1,
+			OneShot = true,
+			Autostart = true
+		};
+		timer.Timeout += () => {
+			checkDeck();
+			turn();
+			timer.QueueFree();
+		};
+		AddChild(timer);
+		
 	}
 
 	private void checkDeck(){
