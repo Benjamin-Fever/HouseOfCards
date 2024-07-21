@@ -71,9 +71,10 @@ public partial class AI : Node2D
 
 	public void turn(){	
 		if(GD.RandRange(0,100) < difficulty){
-			int decidingWeight = (100/deckSize * powerCardCount) * 2 - (100/deckSize * blankCount) - (100/deckSize * jokerCount) * 3;
+			int decidingWeight = (100/(deckSize +1) * powerCardCount) * 2 - (100/(deckSize +1)* blankCount) - (100/(deckSize + 1) * jokerCount) * 3;
 
 			if(decidingWeight < 50){
+				Deck.singleton.reshuffle();
 				GD.Print("plyaer turn 1");
 				//make player draw
 				Card card = Deck.DrawCard();
@@ -83,6 +84,7 @@ public partial class AI : Node2D
 				Main.singleton.OnPlayerCardPlayed();
 			}
 			else if(decidingWeight > 80){
+				Deck.singleton.reshuffle();
 				GD.Print("ai turn");
 				//ai draws
 				Card card = Deck.DrawCard();
@@ -90,12 +92,14 @@ public partial class AI : Node2D
 			} 
 			else{
 				if(decidingWeight + (100/deckSize * blankCount) > 60){
+					Deck.singleton.reshuffle();
 					GD.Print("ai turn");
 					//ai draws
 					Card card = Deck.DrawCard();
 					checkCard();
 				}
 				else{
+					Deck.singleton.reshuffle();
 					GD.Print("plyaer turn 2");
 					//make player draw
 					Card card = Deck.DrawCard();
@@ -107,6 +111,7 @@ public partial class AI : Node2D
 			}	
 		}
 		else{
+			Deck.singleton.reshuffle();
 			GD.Print("ai turn");
 			//ai draws
 			Card card = Deck.DrawCard();
@@ -140,7 +145,6 @@ public partial class AI : Node2D
 			Main.currentTurn = Main.Turn.PLAYER;
 			return;
 		}
-		Deck.singleton.reshuffle();
 		turn();
 	}
 }

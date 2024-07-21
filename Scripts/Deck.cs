@@ -22,14 +22,17 @@ public partial class Deck : Node2D {
     }
 
     public void makeDeck(){
+        cards = new List<CardData>();
         int cardNum;
+        int jc = _jokerCount;
+        int pc = _pictureCardCount;
         for (int i = 0; i < _deckSize; i++) {
             CardData card;
-            if (_jokerCount > 0) {
+            if (jc > 0) {
                 cardNum = 14;
-                _jokerCount--;
+                jc--;
             }
-            else if (_pictureCardCount > 0) {
+            else if (pc > 0) {
                 int caseNum = GD.RandRange(1, 4);
                 switch (caseNum) {
                     case 1:
@@ -48,7 +51,7 @@ public partial class Deck : Node2D {
                         cardNum = 2; 
                         break;
                 }
-                _pictureCardCount--;
+                pc--;
             }
             else {
                 cardNum = GD.RandRange(2, 9); 
@@ -69,6 +72,10 @@ public partial class Deck : Node2D {
         if(popup.Visible){return;}
         deckReveal reveal = GetNode<deckReveal>("../CanvasLayer/DeckReveal");
         if(reveal.Visible){return;}
+        Control reshuffle = GetNode<Control>("../ReshuffleText");
+        if(reshuffle.Visible){return;}
+        Tutorial tutorial = GetNode<Tutorial>("../Tutorial");
+        if(tutorial.Visible){return;}
         Vector2 mousePos = GetLocalMousePosition();
         
         Rect2 rect = sprite.GetRect();
@@ -124,6 +131,7 @@ public partial class Deck : Node2D {
     public void reshuffleComplete(){
         Control reshuffle = GetNode<Control>("../ReshuffleText");
         reshuffle.Visible = false;
+        deckReveal.singleton.reveal();
         Main.singleton.deckTimerStart();
     }
 }

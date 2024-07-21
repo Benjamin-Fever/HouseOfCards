@@ -13,8 +13,15 @@ public partial class deckReveal : Control
 	private TextureRect cardShown;
 	private MarginContainer margin => GetNode<MarginContainer>("MarginContainer");
 
+	public static deckReveal singleton;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
+		singleton = this;
+		reveal();
+	}
+
+	public void reveal(){
 		bool fuck = false;
 		int rows = (int)Mathf.Ceil(Deck.singleton.cards.Count / 5.0f);
 		VBoxContainer vContainer = new VBoxContainer()
