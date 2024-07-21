@@ -126,12 +126,16 @@ public partial class AI : Node2D
 			//house.setTexture(CardCounter);
 		}
 		else if(card.cardData.value == 1 || (card.cardData.value > 10 && card.cardData.value < 14)){
-
+			if (card.cardData.value == 12){
+				Health health = GetNode<Health>("HealthAI");
+				health.AddHealth(1);
+			}
 		}
 		else{
 			GD.Print("AI got a joker");
 			Health health = GetNode<Health>("HealthAI");
-			health.RemoveHealth(1);
+			health.RemoveHealth(1 + (Main.doubleDamage ? 1 : 0));
+			Main.doubleDamage = false;
 			// TODO: change turns to player
 			Main.currentTurn = Main.Turn.PLAYER;
 			return;

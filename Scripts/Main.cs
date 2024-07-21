@@ -19,6 +19,7 @@ public partial class Main : Node {
 	public static int CardCounter = 0;
 	public static Turn currentTurn = Turn.PLAYER;
 	public static Main singleton;
+	public static bool doubleDamage = false;
 
 	public override void _Ready() {
 		singleton = this;
@@ -79,11 +80,47 @@ public partial class Main : Node {
 			house.setTexture(CardCounter);
 		}
 		else if(card.cardData.value == 1 || (card.cardData.value > 10 && card.cardData.value < 14)){
-
+			if (card.cardData.value == 1){
+				// Show 5 cards
+				Deck.RevealCard(5);
+				Timer timer = new Timer(){
+					Autostart = true,
+					WaitTime = 2
+				};
+				currentTurn = Turn.OP;
+				AddChild(timer);
+				timer.Timeout += () => {
+					currentTurn = Turn.PLAYER;
+					Deck.singleton.GetNode("RevealedCards").QueueFree();
+					timer.QueueFree();
+				};
+			}
+			else if (card.cardData.value == 11){
+				// Show 1 card
+				Deck.RevealCard();
+				currentTurn = Turn.OP;
+				Timer timer = new Timer(){
+					Autostart = true,
+					WaitTime = 2
+				};
+				AddChild(timer);
+				timer.Timeout += () => {
+					currentTurn = Turn.PLAYER;
+					Deck.singleton.GetNode("RevealedCards").Free();
+					timer.QueueFree();
+				};
+			}
+			else if (card.cardData.value == 12){
+				Health.AddHealth(1);
+			}
+			else if (card.cardData.value == 13){
+				doubleDamage = true;
+			}
 		}
 		else{
 			Health health = GetNode<Health>("Health");
-			health.RemoveHealth(1);
+			health.RemoveHealth(1 + (doubleDamage ? 1 : 0));
+			doubleDamage = false;
 			currentTurn = Turn.OP;
 			AI ai = GetNode<AI>("AI");
 			ai.OnPlayerDrawsJoker();

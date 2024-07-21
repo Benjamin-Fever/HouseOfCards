@@ -30,21 +30,18 @@ public partial class Deck : Node2D {
                 _jokerCount--;
             }
             else if (_pictureCardCount > 0) {
-                int caseNum = GD.RandRange(1, 5);
+                int caseNum = GD.RandRange(1, 4);
                 switch (caseNum) {
                     case 1:
-                        cardNum = 10;
-                        break;
-                    case 2:
                         cardNum = 11; // Jack
                         break;
-                    case 3:
+                    case 2:
                         cardNum = 12; // Queen
                         break;
-                    case 4:
+                    case 3:
                         cardNum = 13; // King
                         break;
-                    case 5:
+                    case 4:
                         cardNum = 1; // Ace
                         break;
                     default:
@@ -100,14 +97,17 @@ public partial class Deck : Node2D {
     }
 
     public static void RevealCard(int revealCount = 1){
-        Node2D revealedCards = new Node2D();
+        Node2D revealedCards = new Node2D(){
+            Name = "RevealedCards"
+        };
         singleton.AddChild(revealedCards);
         revealedCards.GlobalPosition = singleton.GlobalPosition;
         for (int i = 0; i < revealCount; i++) {
             Card card = singleton._cardScene.Instantiate<Card>();
             card.cardData = singleton.cards[i];
+            card.flipCard();
             revealedCards.AddChild(card);
-            card.Position += new Vector2(0, 40 * i);
+            card.Position += new Vector2(0, 100 * i);
         }
     }
 
